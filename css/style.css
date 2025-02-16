@@ -123,6 +123,9 @@ img {
     object-fit: cover;
 }
 
+.imgmhsz {
+    border-radius: 50%;
+}
 
 button {
     padding-inline: 1rem;
