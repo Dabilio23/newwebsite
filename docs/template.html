@@ -1,0 +1,600 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TidyHire — The Hiring OS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', sans-serif; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #fafafa; }
+::-webkit-scrollbar-thumb { background: #e4e4e7; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #d4d4d8; }
+.float-slow { animation: float 6s ease-in-out infinite; }
+.float-medium { animation: float 4s ease-in-out infinite; }
+.float-fast { animation: float 3s ease-in-out infinite; }
+@keyframes float {
+0% { transform: translateY(0px) rotate(var(--tw-rotate)); }
+50% { transform: translateY(-15px) rotate(var(--tw-rotate)); }
+100% { transform: translateY(0px) rotate(var(--tw-rotate)); }
+}
+/* Custom Segmented Control Checkbox Logic */
+#model-toggle:checked ~ .toggle-bg { transform: translateX(100%); }
+#model-toggle:checked ~ .label-left { color: #71717a; }
+#model-toggle:checked ~ .label-right { color: #18181b; }
+#model-toggle:not(:checked) ~ .label-left { color: #18181b; }
+#model-toggle:not(:checked) ~ .label-right { color: #71717a; }
+</style>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script></head>
+<body class="bg-[#FAFAFA] text-zinc-900 antialiased selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden scroll-smooth">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 inset-x-0 z-50 bg-[#FAFAFA]/80 backdrop-blur-md border-b border-zinc-200/50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-xl font-medium tracking-tighter text-zinc-900">TIDYHIRE</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm text-zinc-500">
+                <a href="#how-it-works" class="hover:text-zinc-900 transition-colors">How It Works</a>
+                <a href="#models" class="hover:text-zinc-900 transition-colors">Two Models</a>
+                <a href="#proof" class="hover:text-zinc-900 transition-colors">Proof</a>
+            </div>
+            <a href="#contact" class="hidden md:flex items-center gap-2 bg-zinc-900 text-white text-sm px-4 py-2 rounded-full shadow-sm hover:bg-zinc-800 transition-all active:scale-95">
+                Talk to Us
+            </a>
+        </div>
+    </nav>
+
+    <!-- 01 — Hero Section -->
+    <section class="relative pt-40 pb-20 overflow-hidden flex flex-col items-center justify-center text-center min-h-[90vh]">
+        
+        <!-- 3D Floating Elements -->
+        <div class="absolute inset-0 w-full h-full max-w-7xl mx-auto pointer-events-none">
+            <!-- Left: Yellow Resume Card -->
+            <div class="hidden lg:flex absolute left-[5%] top-[15%] rotate-[-12deg] w-40 h-56 bg-orange-400 rounded-2xl shadow-xl p-5 flex-col gap-3 float-slow border border-orange-300">
+                <div class="w-10 h-10 rounded-full bg-orange-300/50"></div>
+                <div class="h-3 bg-orange-300/50 rounded w-full mt-2"></div>
+                <div class="h-3 bg-orange-300/50 rounded w-4/5"></div>
+                <div class="h-3 bg-orange-300/50 rounded w-2/3"></div>
+            </div>
+
+            <!-- Left Inner: Dark Profile Badge -->
+            <div class="hidden md:flex absolute left-[20%] top-[40%] rotate-[-5deg] w-48 h-20 bg-zinc-900 rounded-2xl shadow-xl p-4 items-center gap-4 float-medium border border-zinc-800">
+                <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400">
+                    <iconify-icon icon="solar:user-linear" width="20" height="20" style="stroke-width: 1.5;"></iconify-icon>
+                </div>
+                <div class="flex-1 space-y-2">
+                    <div class="h-2 bg-zinc-800 rounded w-full"></div>
+                    <div class="h-2 bg-zinc-800 rounded w-3/4"></div>
+                </div>
+            </div>
+
+            <!-- Right: Giant Custom Toggle -->
+            <div class="hidden lg:flex absolute right-[15%] top-[10%] rotate-[12deg] w-40 h-20 bg-emerald-500 rounded-full shadow-xl border-[6px] border-white p-2 items-center float-fast">
+                <div class="w-14 h-14 bg-white rounded-full shadow-sm ml-auto flex items-center justify-center text-emerald-500">
+                    <iconify-icon icon="solar:check-circle-linear" width="28" height="28" style="stroke-width: 1.5;"></iconify-icon>
+                </div>
+            </div>
+
+            <!-- Right Inner: Blue Candidate Match -->
+            <div class="hidden md:flex absolute right-[5%] top-[35%] rotate-[8deg] w-44 h-44 bg-blue-500 rounded-3xl shadow-xl p-6 flex-col items-center justify-center float-slow border-4 border-white text-white">
+                <iconify-icon icon="solar:bolt-linear" width="64" height="64" style="stroke-width: 1.5;" class="mb-4"></iconify-icon>
+                <div class="h-2 bg-blue-400 rounded w-2/3"></div>
+            </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto px-6">
+            <span class="text-orange-600 text-xs font-medium tracking-tight uppercase bg-orange-50 border border-orange-100 px-3 py-1 rounded-full mb-8">
+                The Hiring OS
+            </span>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-medium tracking-tighter text-zinc-900 leading-[0.9] mb-8">
+                Hiring that lands.<br>
+                <span class="text-orange-500">Every time.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-zinc-500 max-w-2xl leading-relaxed mb-10">
+                TidyHire is the operating system forward-moving companies run their hiring on. Every stage of the funnel, one system, one outcome.
+            </p>
+            
+            <a href="#contact" class="group relative inline-flex items-center gap-2 bg-zinc-900 text-white text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all">
+                <span>Talk to the Founders</span>
+                <iconify-icon icon="solar:arrow-right-linear" width="20" height="20" style="stroke-width: 1.5;" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </a>
+        </div>
+
+        <!-- Logo Row & Stats Grid -->
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 mt-24">
+            <p class="text-sm text-zinc-400 mb-8 tracking-tight">Augmented and Autonomous companies across India, UAE, and MENA.</p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale mb-20 text-zinc-900">
+                <span class="font-medium text-2xl tracking-tighter">AM</span>
+                <span class="font-medium text-2xl tracking-tighter">KTK</span>
+                <span class="font-medium text-2xl tracking-tighter">TM</span>
+                <span class="font-medium text-2xl tracking-tighter">L&amp;T</span>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center bg-white p-6 rounded-2xl shadow-sm border border-zinc-100">
+                <div class="space-y-1">
+                    <p class="text-3xl font-medium tracking-tight text-zinc-900">48 Hrs</p>
+                    <p class="text-sm text-zinc-500">Live System Setup</p>
+                </div>
+                <div class="space-y-1 border-y md:border-y-0 md:border-x border-zinc-100 py-6 md:py-0">
+                    <p class="text-3xl font-medium tracking-tight text-zinc-900">85%</p>
+                    <p class="text-sm text-zinc-500">Joining Ratio</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-3xl font-medium tracking-tight text-orange-500">50%</p>
+                    <p class="text-sm text-zinc-500">Cost per Hire</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 — A Different Way -->
+    <section id="how-it-works" class="py-32 bg-white relative border-t border-zinc-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <span class="text-orange-500 text-sm tracking-tight uppercase mb-4 block">A Different Way</span>
+            <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 max-w-2xl mb-16 leading-tight">
+                What if hiring worked the way everything else in your business does?
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-zinc-50 border border-zinc-100/80 p-8 rounded-2xl transition-all hover:bg-zinc-100/50">
+                    <div class="w-12 h-12 bg-white shadow-sm border border-zinc-200 rounded-xl flex items-center justify-center mb-6 text-zinc-900">
+                        <iconify-icon icon="solar:calendar-mark-linear" width="24" height="24" style="stroke-width: 1.5;"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-medium tracking-tight text-zinc-900 mb-3">Predictable.</h3>
+                    <p class="text-base text-zinc-500 leading-relaxed">You know what's coming and when. No more guessing games with your pipeline.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-zinc-50 border border-zinc-100/80 p-8 rounded-2xl transition-all hover:bg-zinc-100/50">
+                    <div class="w-12 h-12 bg-white shadow-sm border border-zinc-200 rounded-xl flex items-center justify-center mb-6 text-zinc-900">
+                        <iconify-icon icon="solar:shield-check-linear" width="24" height="24" style="stroke-width: 1.5;"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-medium tracking-tight text-zinc-900 mb-3">Accountable.</h3>
+                    <p class="text-base text-zinc-500 leading-relaxed">Every stage owned, every outcome tracked. A process with full visibility.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-zinc-50 border border-zinc-100/80 p-8 rounded-2xl transition-all hover:bg-zinc-100/50">
+                    <div class="w-12 h-12 bg-orange-500 shadow-sm rounded-xl flex items-center justify-center mb-6 text-white">
+                        <iconify-icon icon="solar:settings-linear" width="24" height="24" style="stroke-width: 1.5;"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-medium tracking-tight text-zinc-900 mb-3">Systematic.</h3>
+                    <p class="text-base text-zinc-500 leading-relaxed">Gets sharper with every hire, not slower. Built to scale effortlessly.</p>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <p class="text-xl md:text-2xl font-medium tracking-tight text-zinc-900">Hiring has never been one system. <span class="text-zinc-400">Until now.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 — What TidyHire Is (Scroll Animation Section) -->
+    <section id="system-os-section" class="bg-[#0A0A0A] text-white relative min-h-[400vh]">
+        <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden border-t border-zinc-900">
+            <div class="max-w-7xl mx-auto px-6 w-full pt-10">
+                <span class="text-orange-500 text-sm tracking-tight uppercase mb-4 block">The Operating System</span>
+                <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-16">
+                    One system. Every stage.<br>Nothing handed off.
+                </h2>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row gap-16 items-center flex-1 pb-20">
+                <!-- Left Side: Copy sequence -->
+                <div class="lg:w-1/3 relative h-[250px] w-full flex items-center">
+                    <!-- State 0 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-100 translate-y-0">
+                        <p class="text-2xl font-medium tracking-tight text-zinc-400 leading-snug">
+                            Right now, your hiring has all the pieces.<br>
+                            Just not in the right order.<br>
+                            And never in one place.
+                        </p>
+                    </div>
+                    <!-- State 1 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-0 translate-y-8 pointer-events-none">
+                        <p class="text-2xl font-medium tracking-tight text-white leading-snug">
+                            The right brief finds the right people.
+                        </p>
+                    </div>
+                    <!-- State 2 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-0 translate-y-8 pointer-events-none">
+                        <p class="text-2xl font-medium tracking-tight text-white leading-snug">
+                            Every conversation becomes a data point.<br>
+                            Not instinct. <span class="text-orange-500">Evidence.</span>
+                        </p>
+                    </div>
+                    <!-- State 3 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-0 translate-y-8 pointer-events-none">
+                        <p class="text-2xl font-medium tracking-tight text-white leading-snug">
+                            The right person stops being a guess.<br>
+                            The system already knows.
+                        </p>
+                    </div>
+                    <!-- State 4 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-0 translate-y-8 pointer-events-none">
+                        <p class="text-2xl font-medium tracking-tight text-white leading-snug">
+                            Offers go out informed.<br>
+                            Joining gets tracked.<br>
+                            Nothing falls through.
+                        </p>
+                    </div>
+                    <!-- State 5 -->
+                    <div class="os-text absolute w-full transition-all duration-700 ease-in-out opacity-0 translate-y-8 pointer-events-none">
+                        <p class="text-2xl font-medium tracking-tight text-zinc-400 leading-snug mb-6">
+                            This is one system.<br>
+                            Every hire makes the next one better.
+                        </p>
+                        <p class="text-3xl font-medium tracking-tight text-white">
+                            Hiring that lands.<br>
+                            <span class="text-orange-500">Every time.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Visual System -->
+                <div class="lg:w-2/3 w-full flex flex-col items-center justify-center relative min-h-[400px]">
+                    <div class="flex flex-wrap lg:flex-nowrap items-center justify-center gap-y-12 relative z-10 w-full" id="silos-container">
+                        <!-- Silo 1 -->
+                        <div class="os-silo flex-shrink-0 w-24 md:w-28 h-24 md:h-28 bg-zinc-900 rounded-2xl flex items-center justify-center border border-zinc-800 transition-all duration-700">
+                            <span class="text-base font-medium text-zinc-500 os-silo-text transition-colors duration-700">Clarity</span>
+                        </div>
+                        
+                        <!-- Gap 1 -->
+                        <div class="os-gap w-0 overflow-hidden opacity-0 scale-50 transition-all duration-700 flex flex-col items-center justify-center px-2">
+                            <div class="bg-orange-500/10 text-orange-500 border border-orange-500/20 text-xs px-3 py-1 rounded-full whitespace-nowrap mb-2 tracking-tight">Your Team</div>
+                        </div>
+
+                        <!-- Silo 2 -->
+                        <div class="os-silo flex-shrink-0 w-24 md:w-28 h-24 md:h-28 bg-zinc-900 rounded-2xl flex items-center justify-center border border-zinc-800 transition-all duration-700">
+                            <span class="text-base font-medium text-zinc-500 os-silo-text transition-colors duration-700">Reach</span>
+                        </div>
+
+                        <!-- Gap 2 -->
+                        <div class="os-gap w-0 overflow-hidden opacity-0 scale-50 transition-all duration-700 flex flex-col items-center justify-center px-2">
+                            <div class="bg-orange-500/10 text-orange-500 border border-orange-500/20 text-xs px-3 py-1 rounded-full whitespace-nowrap mb-2 tracking-tight">Ria</div>
+                        </div>
+
+                        <!-- Silo 3 -->
+                        <div class="os-silo flex-shrink-0 w-24 md:w-28 h-24 md:h-28 bg-zinc-900 rounded-2xl flex items-center justify-center border border-zinc-800 transition-all duration-700">
+                            <span class="text-base font-medium text-zinc-500 os-silo-text transition-colors duration-700">Signal</span>
+                        </div>
+
+                        <!-- Gap 3 -->
+                        <div class="os-gap w-0 overflow-hidden opacity-0 scale-50 transition-all duration-700 flex flex-col items-center justify-center px-2">
+                            <div class="bg-orange-500/10 text-orange-500 border border-orange-500/20 text-xs px-3 py-1 rounded-full whitespace-nowrap mb-2 tracking-tight">Charlie</div>
+                        </div>
+
+                        <!-- Silo 4 -->
+                        <div class="os-silo flex-shrink-0 w-24 md:w-28 h-24 md:h-28 bg-zinc-900 rounded-2xl flex items-center justify-center border border-zinc-800 transition-all duration-700">
+                            <span class="text-base font-medium text-zinc-500 os-silo-text transition-colors duration-700">Conviction</span>
+                        </div>
+
+                        <!-- Silo 5 -->
+                        <div class="os-silo hidden lg:flex flex-shrink-0 w-28 h-28 bg-zinc-900 rounded-2xl items-center justify-center border border-zinc-800 transition-all duration-700 ml-4">
+                            <span class="text-base font-medium text-zinc-500 os-silo-text transition-colors duration-700">Commitment</span>
+                        </div>
+                    </div>
+
+                    <!-- Foundation Layer (Param) -->
+                    <div id="os-foundation" class="w-full md:w-[110%] h-20 bg-zinc-950 rounded-2xl border border-orange-500/20 flex flex-col items-center justify-center mt-6 opacity-0 translate-y-12 transition-all duration-1000 relative overflow-hidden">
+                        <span class="text-orange-500 font-medium text-xl tracking-tight z-10">Param</span>
+                        <span class="text-zinc-600 text-xs z-10 mt-1 tracking-tight">The layer that holds it all.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04 — Two Ways In -->
+    <section id="models" class="py-32 bg-[#FAFAFA] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-orange-500 text-sm tracking-tight uppercase mb-4 block">Two Models</span>
+                <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 mb-6">
+                    Same outcome. Your choice.
+                </h2>
+                <p class="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto">
+                    Some companies want us to run it entirely. Others want to run it themselves. Param sits at the centre of both.
+                </p>
+            </div>
+
+            <!-- Custom Segmented Control -->
+            <div class="flex justify-center mb-16">
+                <div class="relative bg-zinc-200/50 p-1 rounded-full flex items-center border border-zinc-200">
+                    <input type="checkbox" id="model-toggle" class="sr-only">
+                    <div class="toggle-bg absolute w-1/2 h-[calc(100%-8px)] bg-white rounded-full shadow-sm transition-transform duration-300 ease-in-out left-1"></div>
+                    
+                    <label for="model-toggle" class="relative z-10 w-32 md:w-40 text-center py-2 text-sm font-medium cursor-pointer transition-colors duration-300 label-left select-none">
+                        Augmented
+                    </label>
+                    <label for="model-toggle" class="relative z-10 w-32 md:w-40 text-center py-2 text-sm font-medium cursor-pointer transition-colors duration-300 label-right select-none">
+                        Autonomous
+                    </label>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Augmented Card -->
+                <div class="bg-white rounded-3xl p-10 border border-zinc-200 shadow-sm relative overflow-hidden group hover:border-zinc-300 transition-colors">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span class="inline-block border border-orange-200 bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs tracking-tight uppercase mb-8">For companies who want hiring handled</span>
+                    <h3 class="text-3xl font-medium tracking-tight text-zinc-900 mb-4 leading-tight">We run the funnel.<br>You make the final call.</h3>
+                    <p class="text-base text-zinc-500 leading-relaxed mb-10">
+                        A dedicated team of recruiters — powered by Ria, Charlie, and Param — runs your entire hiring process end to end. From the brief to day one. You stay in the decisions that matter. We handle everything else.
+                    </p>
+                    
+                    <div class="flex items-center gap-3 mb-10 bg-zinc-50 p-4 rounded-xl border border-zinc-100">
+                        <iconify-icon icon="solar:check-circle-linear" width="24" height="24" style="stroke-width: 1.5;" class="text-emerald-500 shrink-0"></iconify-icon>
+                        <p class="text-sm font-medium text-zinc-900 tracking-tight">Live in 48 hours. First qualified candidate by Day 5.</p>
+                    </div>
+                    
+                    <a href="#" class="inline-flex items-center gap-2 text-base font-medium text-zinc-900 hover:text-orange-500 transition-colors">
+                        Talk to us about Augmented
+                        <iconify-icon icon="solar:arrow-right-linear" width="18" height="18" style="stroke-width: 1.5;"></iconify-icon>
+                    </a>
+                </div>
+
+                <!-- Autonomous Card -->
+                <div class="bg-zinc-950 rounded-3xl p-10 border border-zinc-800 relative overflow-hidden group hover:border-zinc-700 transition-colors">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-zinc-800 rounded-full blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-30 transition-opacity"></div>
+                    <span class="inline-block border border-zinc-800 bg-zinc-900 text-zinc-300 px-3 py-1 rounded-full text-xs tracking-tight uppercase mb-8">For companies who want to run it themselves</span>
+                    <h3 class="text-3xl font-medium tracking-tight text-white mb-4 leading-tight">Your team.<br>Our system.</h3>
+                    <p class="text-base text-zinc-400 leading-relaxed mb-10">
+                        Param gives your recruiters the operating layer they've never had. Ria screens. Charlie interviews. Your team closes. Every stage tracked, every decision informed, every hire smarter than the last.
+                    </p>
+                    
+                    <div class="flex items-center gap-3 mb-10 bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                        <iconify-icon icon="solar:bolt-linear" width="24" height="24" style="stroke-width: 1.5;" class="text-orange-500 shrink-0"></iconify-icon>
+                        <p class="text-sm font-medium text-zinc-200 tracking-tight">Up and running faster than any enterprise tool you've touched.</p>
+                    </div>
+                    
+                    <a href="#" class="inline-flex items-center gap-2 text-base font-medium text-white hover:text-zinc-300 transition-colors">
+                        Talk to us about Autonomous
+                        <iconify-icon icon="solar:arrow-right-linear" width="18" height="18" style="stroke-width: 1.5;"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+            
+            <p class="text-center text-sm text-zinc-500 mt-12">Not sure which model fits? That's exactly what the first conversation is for.</p>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-24 bg-white border-y border-zinc-100 relative">
+        <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white border border-zinc-200 rounded-full flex items-center justify-center shadow-sm text-orange-500">
+            <iconify-icon icon="solar:quote-left-linear" width="20" height="20" style="stroke-width: 1.5;"></iconify-icon>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <p class="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 leading-snug mb-10">
+                "Before TidyHire, we were managing hiring across 4 tools and 3 vendors. Nothing talked to each other. We'd lose candidates between screening and offers and never know why. Since running on one system, our time to fill dropped from 45 days to 14. <span class="text-zinc-500">The difference isn't the technology — it's that the process finally has accountability built into it.</span>"
+            </p>
+            <div class="flex flex-col items-center justify-center">
+                <div class="w-12 h-12 bg-zinc-100 border border-zinc-200 rounded-full mb-3 flex items-center justify-center text-zinc-400">
+                    <iconify-icon icon="solar:user-linear" width="20" height="20" style="stroke-width: 1.5;"></iconify-icon>
+                </div>
+                <h4 class="text-base font-medium text-zinc-900">Sarah Jenkins</h4>
+                <p class="text-sm text-zinc-500 mb-1">Head of Talent Acquisition, TM</p>
+                <p class="text-xs text-zinc-400 tracking-tight uppercase">Autonomous Model</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 — Proof -->
+    <section id="proof" class="py-32 bg-[#FAFAFA]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="text-orange-500 text-sm tracking-tight uppercase mb-4 block">Proof</span>
+                <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 max-w-3xl mx-auto">
+                    These companies didn't fix their hiring.<br>They replaced how it worked.
+                </h2>
+            </div>
+
+            <div class="space-y-10">
+                <!-- Proof: Augmented -->
+                <div class="bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+                        <h3 class="text-xl font-medium tracking-tight text-zinc-900">Augmented <span class="text-zinc-400 font-normal">| Recruiter + AI</span></h3>
+                        <div class="flex flex-wrap gap-4 text-sm font-medium text-zinc-400 uppercase tracking-tight">
+                            <span>REDPIN</span>
+                            <span>APERAM</span>
+                            <span>BARBARIAN</span>
+                            <span>CUBIC</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                            <p class="text-4xl font-medium tracking-tight text-zinc-900 mb-1">250</p>
+                            <p class="text-sm text-zinc-500">Hires across 8 months</p>
+                        </div>
+                        <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                            <p class="text-4xl font-medium tracking-tight text-zinc-900 mb-1">50%</p>
+                            <p class="text-sm text-zinc-500">Cost per hire vs industry</p>
+                        </div>
+                        <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                            <p class="text-4xl font-medium tracking-tight text-orange-500 mb-1">85%</p>
+                            <p class="text-sm text-zinc-500">Joining ratio vs 60% avg</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proof: Autonomous -->
+                <div class="bg-zinc-950 rounded-3xl p-8 border border-zinc-800 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+                        <h3 class="text-xl font-medium tracking-tight text-white">Autonomous <span class="text-zinc-500 font-normal">| AI Agents</span></h3>
+                        <div class="flex flex-wrap gap-4 text-sm font-medium text-zinc-600 uppercase tracking-tight">
+                            <span>FEUJI</span>
+                            <span>TEAMLEASE</span>
+                            <span>INTELLISWIFT</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                            <p class="text-4xl font-medium tracking-tight text-white mb-1">36K</p>
+                            <p class="text-sm text-zinc-400">Interviews conducted by AI</p>
+                        </div>
+                        <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                            <p class="text-4xl font-medium tracking-tight text-white mb-1">63.8%</p>
+                            <p class="text-sm text-zinc-400">Full interview completion rate</p>
+                        </div>
+                        <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-orange-500/5 mix-blend-overlay"></div>
+                            <p class="text-4xl font-medium tracking-tight text-orange-400 mb-1 relative z-10">10 Days</p>
+                            <p class="text-sm text-zinc-400 relative z-10">To fill vs 45–60 industry avg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-lg text-zinc-900 font-medium tracking-tight mt-16">This is what hiring looks like on one system.</p>
+        </div>
+    </section>
+
+    <!-- 06 — Who This Is For -->
+    <section class="py-32 bg-white border-t border-zinc-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <span class="text-orange-500 text-sm tracking-tight uppercase mb-4 block text-center">Who This Is For</span>
+            <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 text-center mb-8 leading-tight">
+                Built for companies where hiring is a business decision, not an admin function.
+            </h2>
+            <p class="text-lg text-zinc-500 text-center max-w-2xl mx-auto mb-16">
+                We work with mid-size and enterprise companies that hold talent acquisition to the same standard as every other operation. Where a slow hire has a real cost. And a wrong hire has a bigger one.
+            </p>
+
+            <div class="grid grid-cols-1 gap-4">
+                <div class="flex items-start gap-5 bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                    <div class="text-sm font-medium text-zinc-400 mt-0.5">01</div>
+                    <p class="text-base text-zinc-700 leading-relaxed">
+                        You're the kind of company where the brief matters — because you know that getting it wrong upstream costs you downstream.
+                    </p>
+                </div>
+                <div class="flex items-start gap-5 bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                    <div class="text-sm font-medium text-zinc-400 mt-0.5">02</div>
+                    <p class="text-base text-zinc-700 leading-relaxed">
+                        You've tried tools. You've tried agencies. You know the problem isn't effort. It's architecture.
+                    </p>
+                </div>
+                <div class="flex items-start gap-5 bg-zinc-50 p-6 rounded-2xl border border-zinc-100">
+                    <div class="text-sm font-medium text-orange-500 mt-0.5">03</div>
+                    <p class="text-base text-zinc-900 font-medium leading-relaxed">
+                        You're not looking for a vendor. You're looking for a system you can run on.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 — The Close -->
+    <section id="contact" class="py-32 bg-zinc-950 text-center relative overflow-hidden">
+        <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+        
+        <div class="max-w-3xl mx-auto px-6 relative z-10">
+            <span class="text-orange-500 text-sm tracking-tight uppercase mb-6 block">Let's Talk</span>
+            <h2 class="text-4xl md:text-6xl font-medium tracking-tight text-white mb-8 leading-tight">
+                Hiring has been broken for a long time. <br>
+                <span class="text-zinc-600">We're fixing it.</span>
+            </h2>
+            <p class="text-base md:text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed mb-12">
+                We started TidyHire because we watched great companies lose great people to slow, broken, unaccountable processes. We built the system we wished existed. And we talk to every company ourselves.
+            </p>
+
+            <button class="group relative inline-flex items-center gap-2 bg-white text-zinc-900 text-base font-medium px-8 py-4 rounded-full shadow-lg hover:bg-zinc-100 transition-all mb-6">
+                <span>Talk to the Founders</span>
+                <iconify-icon icon="solar:arrow-right-linear" width="18" height="18" style="stroke-width: 1.5;"></iconify-icon>
+            </button>
+            
+            <p class="text-sm text-zinc-600">No pitch deck. No sales rep. Just a conversation.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-zinc-600 py-8 border-t border-zinc-900 text-center">
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <span class="text-base font-medium tracking-tighter text-zinc-400">TIDYHIRE</span>
+        </div>
+        <p class="text-xs">© 2024 TidyHire. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll Logic for Section 03 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const osSection = document.getElementById('system-os-section');
+            const osTexts = document.querySelectorAll('.os-text');
+            const silos = document.querySelectorAll('.os-silo');
+            const siloTexts = document.querySelectorAll('.os-silo-text');
+            const gaps = document.querySelectorAll('.os-gap');
+            const foundation = document.getElementById('os-foundation');
+
+            if(!osSection) return;
+
+            window.addEventListener('scroll', () => {
+                const rect = osSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                const scrollY = -rect.top;
+                const maxScroll = rect.height - windowHeight;
+                let progress = scrollY / maxScroll;
+                
+                progress = Math.max(0, Math.min(1, progress));
+
+                const stateCount = 6;
+                let currentState = Math.floor(progress * stateCount);
+                if (currentState === stateCount) currentState = stateCount - 1;
+
+                osTexts.forEach((txt, index) => {
+                    if (index === currentState) {
+                        txt.style.opacity = '1';
+                        txt.style.transform = 'translateY(0)';
+                        txt.style.pointerEvents = 'auto';
+                    } else {
+                        txt.style.opacity = '0';
+                        txt.style.transform = index < currentState ? 'translateY(-20px)' : 'translateY(20px)';
+                        txt.style.pointerEvents = 'none';
+                    }
+                });
+
+                gaps.forEach((gap, index) => {
+                    if (currentState > index) {
+                        gap.classList.remove('w-0', 'opacity-0', 'scale-50');
+                        gap.classList.add('w-16', 'md:w-24', 'opacity-100', 'scale-100');
+                    } else {
+                        gap.classList.add('w-0', 'opacity-0', 'scale-50');
+                        gap.classList.remove('w-16', 'md:w-24', 'opacity-100', 'scale-100');
+                    }
+                });
+
+                if (currentState >= 4) {
+                    silos.forEach(silo => {
+                        silo.classList.remove('bg-zinc-900', 'border-zinc-800');
+                        silo.classList.add('bg-zinc-800', 'border-orange-500/30');
+                    });
+                    siloTexts.forEach(t => t.classList.replace('text-zinc-500', 'text-white'));
+                    
+                    foundation.classList.remove('opacity-0', 'translate-y-12');
+                    foundation.classList.add('opacity-100', 'translate-y-0');
+                } else {
+                    silos.forEach(silo => {
+                        silo.classList.add('bg-zinc-900', 'border-zinc-800');
+                        silo.classList.remove('bg-zinc-800', 'border-orange-500/30');
+                    });
+                    siloTexts.forEach(t => t.classList.replace('text-white', 'text-zinc-500'));
+                    
+                    foundation.classList.add('opacity-0', 'translate-y-12');
+                    foundation.classList.remove('opacity-100', 'translate-y-0');
+                }
+            });
+        });
+    </script>
+
+</body></html>
