@@ -151,6 +151,22 @@
                 Demander une démo
                 <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
             </a>
+            <button id="menu-toggle"
+                class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+                aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="22" height="22"></iconify-icon>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="lg:hidden hidden border-t border-zinc-200 bg-[#FAFAFA] px-6 py-4 space-y-3 text-sm">
+            <a href="#accueil" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Accueil</a>
+            <a href="#solutions" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Nos solutions</a>
+            <a href="modules/inscription.html" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Module Inscription</a>
+            <a href="#contact" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Contact</a>
+            <a href="#contact"
+                class="block text-center bg-[#170b30] text-white px-4 py-3 rounded-full transition-all active:scale-95 mt-2">
+                Demander une démo
+            </a>
         </div>
     </nav>
 
@@ -1540,6 +1556,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            var menuToggle = document.getElementById('menu-toggle');
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
             const tabs = document.querySelectorAll('.module-tab');
             const panels = document.querySelectorAll('.module-panel');
 
