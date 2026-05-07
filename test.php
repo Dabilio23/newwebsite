@@ -3,42 +3,41 @@
 </form>
 <pre><?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_encode([
+    $payload = json_encode([
         'type' => 'Test',
         'nom' => 'Test depuis formulaire',
         'email' => 'test@dabil.io',
         'message' => 'Ceci est un test de send.php',
     ]);
 
-    $opts = [
-        'http' => [
-            'method' => 'POST',
-            'header' => "Content-Type: application/json\r\n",
-            'content' => $data,
-            'ignore_errors' => true,
-        ],
-    ];
-    $ctx = stream_context_create($opts);
-    $result = file_get_contents('http://' . $_SERVER['HTTP_HOST'] . '/send.php', false, $ctx);
+    $ch = curl_init('https://' . $_SERVER['HTTP_HOST'] . '/send.php');
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_FOLLOWLOCATION => true,
+    ]);
+    $result = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    curl_close($ch);
 
-    echo "Requête envoyée à send.php\n";
+    echo "HTTP $httpCode\n";
     echo "----------------------------------------\n";
 
-    if ($result === false) {
-        echo "ÉCHEC : impossible de contacter send.php\n";
+    if ($error) {
+        echo "cURL error: $error\n";
+    } elseif (!$result) {
+        echo "Réponse vide\n";
     } else {
-        echo "Réponse brute :\n$result\n\n";
+        echo "$result\n\n";
         $json = json_decode($result, true);
-        if ($json) {
-            echo "JSON décodé :\n";
-            print_r($json);
-            if (isset($json['success']) && $json['success'] === true) {
-                echo "\n✓ SUCCÈS - Vérifie ta boîte mail marketing@dabil.io\n";
-            } else {
-                echo "\n✗ ÉCHEC - " . ($json['error'] ?? 'erreur inconnue') . "\n";
-            }
+        if ($json && isset($json['success']) && $json['success'] === true) {
+            echo "✓ SUCCÈS - Vérifie ta boîte mail marketing@dabil.io\n";
         } else {
-            echo "✗ La réponse n'est pas du JSON valide\n";
+            echo "✗ ÉCHEC - " . ($json['error'] ?? 'réponse inattendue') . "\n";
         }
     }
 }
