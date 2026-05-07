@@ -42,16 +42,8 @@ $apiKey = getenv('RESEND_API_KEY');
 if (!$apiKey) {
     $envFile = __DIR__ . '/.env';
     if (file_exists($envFile) && is_readable($envFile)) {
-        $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($lines as $line) {
-            $line = trim($line);
-            if ($line === '' || $line[0] === '#') continue;
-            $parts = explode('=', $line, 2);
-            if (count($parts) === 2 && trim($parts[0]) === 'RESEND_API_KEY') {
-                $apiKey = trim($parts[1]);
-                break;
-            }
-        }
+        $env = @parse_ini_file($envFile);
+        $apiKey = $env['RESEND_API_KEY'] ?? '';
     }
 }
 
