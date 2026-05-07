@@ -437,7 +437,7 @@
                                 </label>
                                 <label class="block">
                                     <span class="text-xs text-white/50 mb-1.5 block">Type d'établissement</span>
-                                    <select name="type"
+                                    <select name="etablissement_type"
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-emerald-400 transition-colors">
                                         <option value="" class="text-zinc-900">Sélectionner…</option>
                                         <option value="ecole" class="text-zinc-900">École primaire / Collège / Lycée
@@ -1616,7 +1616,7 @@
                     fd.forEach(function (value, key) { data[key] = value; });
 
                     try {
-                        var res = await fetch('/api/send', {
+                        var res = await fetch('send.php', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(data),
@@ -1627,6 +1627,7 @@
                         form.reset();
                         setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
                     } catch (err) {
+                        console.error('Form error:', err);
                         btn.innerHTML = '✗ Erreur - réessayer';
                         setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
                     }
