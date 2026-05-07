@@ -13,23 +13,6 @@ function jsonResponse($code, $data) {
     exit;
 }
 
-if (isset($_GET['debug'])) {
-    $info = [
-        'version' => '4',
-        'file' => __FILE__,
-        'env_exists' => file_exists(__DIR__ . '/.env'),
-        'env_readable' => is_readable(__DIR__ . '/.env'),
-        'api_key_from_env' => getenv('RESEND_API_KEY') ? 'oui' : 'non',
-        'curl_available' => function_exists('curl_version'),
-        'curl_version' => function_exists('curl_version') ? curl_version()['version'] : 'N/A',
-    ];
-    $envFile = __DIR__ . '/.env';
-    if (file_exists($envFile)) {
-        $info['env_content'] = file_get_contents($envFile);
-    }
-    jsonResponse(200, $info);
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     jsonResponse(200, []);
 }
