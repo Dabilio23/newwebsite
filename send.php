@@ -76,6 +76,9 @@ curl_setopt_array($ch, [
         'subject' => $subject,
         'text' => $text,
     ]),
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_SSL_VERIFYHOST => false,
+    CURLOPT_TIMEOUT => 15,
 ]);
 
 $response = curl_exec($ch);
@@ -85,12 +88,12 @@ curl_close($ch);
 
 if ($curlError) {
     error_log('send.php: cURL error - ' . $curlError);
-    jsonResponse(500, ['error' => 'Erreur d\'envoi du message']);
+    jsonResponse(500, ['error' => 'cURL: ' . $curlError]);
 }
 
 if ($httpCode >= 400) {
     error_log('send.php: Resend API error (HTTP ' . $httpCode . ') - ' . $response);
-    jsonResponse(500, ['error' => 'Erreur d\'envoi du message']);
+    jsonResponse(500, ['error' => 'Resend: HTTP ' . $httpCode]);
 }
 
 jsonResponse(200, ['success' => true]);
