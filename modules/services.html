@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services web Dabilio</title>
+    <meta name="description"
+        content="Dabilio, votre allié dans votre transformation digitale. Création de sites internet pour établissements scolaires, intégration avec vos outils et accompagnement dédié.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .float-slow {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        #sticky-cta {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        #sticky-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#FAFAFA] text-zinc-900 antialiased selection:bg-emerald-200 selection:text-emerald-950 overflow-x-hidden scroll-smooth">
+
+    <!-- ============ NAV ============ -->
+    <nav class="fixed top-0 inset-x-0 z-50 bg-[#FAFAFA]/85 backdrop-blur-md border-b border-zinc-200/60">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3" aria-label="Accueil Dabilio">
+                <img src="../public/logo.png" alt="Dabilio" class="h-11 w-auto">
+            </a>
+            <div class="hidden lg:flex items-center gap-8 text-sm text-zinc-500">
+                <a href="../index.html" class="hover:text-zinc-900 transition-colors">Accueil</a>
+                <div class="relative group">
+                    <a href="../index.html#solutions"
+                        class="inline-flex items-center gap-1 hover:text-zinc-900 transition-colors py-6">
+                        Solutions
+                        <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+                    </a>
+                    <div
+                        class="absolute left-0 top-full w-[820px] translate-y-2 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par type
+                                        d'établissement</span>
+                                </div>
+                                <a href="../index.html#solution-ecoles"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les écoles</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Primaire, collège et lycée</span>
+                                </a>
+                                <a href="../index.html#solution-universites"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les Universités</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Pilotage académique et
+                                        administratif</span>
+                                </a>
+                                <a href="../index.html#solution-centres-formation"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les Centres de Formation</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Suivi des apprenants et parcours
+                                        métiers</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par
+                                        outil</span>
+                                </div>
+                                <a href="../index.html#plateforme"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">La plateforme Dabilio</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Modules de gestion, vie scolaire,
+                                        pédagogie, et finances</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par
+                                        modules</span>
+                                </div>
+                                <a href="admission.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Module Admission <iconify-icon
+                                            icon="solar:star-bold" width="14" height="14"
+                                            class="text-emerald-500 inline-block align-middle"></iconify-icon></span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Gratuit. Inscriptions, classes,
+                                        déploiement 48h</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="services.html"
+                        class="inline-flex items-center gap-1 hover:text-zinc-900 transition-colors py-6">
+                        Services
+                        <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+                    </a>
+                    <div
+                        class="absolute left-0 top-full w-[580px] translate-y-2 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <a href="services.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Création web pour établissements
+                                        scolaires</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Sites internet sur mesure pour écoles,
+                                        universités et centres de formation</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <a href="annuaire.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Annuaire des établissements</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Référencez votre établissement et soyez trouvé par les parents</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hover:text-zinc-900 transition-colors">Contact</a>
+            </div>
+            <a href="../index.html#contact"
+                class="hidden md:inline-flex items-center gap-2 bg-[#170b30] text-white text-sm px-4 py-2 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
+                Demander une démo
+                <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+            </a>
+            <button id="menu-toggle"
+                class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+                aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="22" height="22"></iconify-icon>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu"
+            class="lg:hidden hidden border-t border-zinc-200 bg-[#FAFAFA] px-6 py-4 space-y-3 text-sm">
+            <a href="../index.html" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Accueil</a>
+            <a href="../index.html#solutions"
+                class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Solutions</a>
+            <a href="services.html" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Services</a>
+            <a href="../index.html#contact"
+                class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Contact</a>
+            <a href="../index.html#contact"
+                class="block text-center bg-[#170b30] text-white px-4 py-3 rounded-full transition-all active:scale-95 mt-2">
+                Demander une démo
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ============ HERO ============ -->
+        <section class="relative pt-36 pb-28 overflow-hidden min-h-[85vh] flex flex-col justify-center">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../public/service_hero.png');"></div>
+                <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-[#B3644D]/5 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#170b30]/5 rounded-full blur-3xl"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+                <div class="max-w-3xl">
+                    <div
+                        class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-1 rounded-full mb-6">
+                        <iconify-icon icon="solar:globus-linear" width="14" height="14"
+                            class="text-white"></iconify-icon>
+                        <span class="text-white text-xs font-medium uppercase tracking-wide">Services web</span>
+                    </div>
+                    <h1
+                        class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mb-6">
+                        Dabilio, votre allié<br>
+                        <span class="text-[#f2cc8f]"> dans votre transformation digitale</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
+                        Donnez à votre établissement une présence en ligne moderne, performante et connectée à vos
+                        outils de gestion.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#pourquoi-creer-site"
+                            class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-base px-6 py-3.5 rounded-full shadow-sm hover:bg-white/25 transition-all active:scale-95">
+                            Découvrir nos services
+                            <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ POURQUOI CRÉER UN SITE INTERNET ============ -->
+        <section id="pourquoi-creer-site" class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#B3644D] text-sm tracking-tight uppercase mb-4 block">Pourquoi créer un site
+                        internet</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Votre établissement mérite<br>
+                        <span class="text-zinc-500">une vitrine à la hauteur de ses ambitions</span>
+                    </h2>
+                    <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+                        Dans un monde où tout passe par le numérique, un site internet est bien plus qu'une simple carte
+                        de visite. C'est le premier point de contact avec vos futurs élèves, parents et partenaires.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-zinc-50 border border-zinc-100 rounded-2xl p-8 text-center">
+                        <div class="w-12 h-12 rounded-xl bg-[#B3644D]/10 flex items-center justify-center mx-auto mb-5">
+                            <iconify-icon icon="solar:eye-linear" width="24" height="24"
+                                class="text-[#B3644D]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-3">Visibilité</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Soyez trouvable sur Google, présentez vos filières, vos résultats et votre projet
+                            pédagogique à toute la région.
+                        </p>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-100 rounded-2xl p-8 text-center">
+                        <div class="w-12 h-12 rounded-xl bg-[#B3644D]/10 flex items-center justify-center mx-auto mb-5">
+                            <iconify-icon icon="solar:shield-check-linear" width="24" height="24"
+                                class="text-[#B3644D]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-3">Crédibilité</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Un site professionnel inspire confiance aux parents et aux partenaires. C'est le signe d'un
+                            établissement moderne et organisé.
+                        </p>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-100 rounded-2xl p-8 text-center">
+                        <div class="w-12 h-12 rounded-xl bg-[#B3644D]/10 flex items-center justify-center mx-auto mb-5">
+                            <iconify-icon icon="solar:user-heart-linear" width="24" height="24"
+                                class="text-[#B3644D]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-3">Attractivité</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Facilitez l'inscription en ligne, mettez en avant vos événements et vos réussites pour
+                            attirer de nouveaux talents.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ GAMME DE SERVICES DÉDIÉS ============ -->
+        <section id="gamme-services" class="py-24 border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#B3644D] text-sm tracking-tight uppercase mb-4 block">Gamme de services
+                        dédiés</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Une offre complète<br>
+                        <span class="text-zinc-500">pour votre établissement</span>
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-8 hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 rounded-lg bg-[#170b30]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:code-linear" width="22" height="22"
+                                class="text-[#170b30]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-2">Création de site sur mesure</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Design personnalisé, architecture adaptée à votre établissement, contenu optimisé pour le
+                            référencement. Un site unique qui vous ressemble.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-8 hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 rounded-lg bg-[#170b30]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:server-linear" width="22" height="22"
+                                class="text-[#170b30]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-2">Hébergement et domaine</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Hébergement haute performance, nom de domaine inclus, certificat SSL, sauvegardes
+                            automatiques. Votre site est toujours en ligne et sécurisé.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-8 hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 rounded-lg bg-[#170b30]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:refresh-linear" width="22" height="22"
+                                class="text-[#170b30]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-2">Maintenance et mises à jour</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Mise à jour des contenus, correctifs de sécurité, ajout de pages et fonctionnalités. Vous
+                            vous concentrez sur l'essentiel, on s'occupe du reste.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-8 hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 rounded-lg bg-[#170b30]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:graph-new-linear" width="22" height="22"
+                                class="text-[#170b30]"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-zinc-800 mb-2">Référencement naturel (SEO)</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Optimisation pour les moteurs de recherche, balisage sémantique, contenu optimisé.
+                            Apparaissez en tête des recherches dans votre secteur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ INTÉGRATION AVEC LES SOLUTIONS DABILIO ============ -->
+        <section id="integration-solutions" class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-[#B3644D] text-sm tracking-tight uppercase mb-4 block">Intégration avec les
+                            solutions Dabilio</span>
+                        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-900 leading-tight mb-6">
+                            Un site connecté<br>
+                            <span class="text-zinc-500">à votre plateforme</span>
+                        </h2>
+                        <p class="text-zinc-500 leading-relaxed mb-6">
+                            Votre site internet ne fait pas que présenter votre établissement : il communique
+                            directement avec la plateforme Dabilio pour offrir une expérience fluide aux parents, élèves
+                            et équipes.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4">
+                                <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                <div>
+                                    <span class="text-sm font-medium text-zinc-800">Admissions en ligne</span>
+                                    <p class="text-xs text-zinc-500">Les formulaires d'admission sur votre site sont
+                                        directement reliés à votre espace Dabilio.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                <div>
+                                    <span class="text-sm font-medium text-zinc-800">Portail parents / élèves</span>
+                                    <p class="text-xs text-zinc-500">Accès aux notes, emplois du temps, paiements et
+                                        communications depuis le site.</p>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <a href="../index.html#plateforme"
+                            class="inline-flex items-center gap-2 bg-[#170b30] text-white text-base px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95 mt-8">
+                            Découvrir la plateforme Dabilio
+                            <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+                        </a>
+                    </div>
+                    <div class="relative flex items-center justify-center">
+                        <div class="bg-white border border-zinc-200 rounded-2xl shadow-xl p-10 w-full">
+                            <div class="flex items-center gap-1.5 mb-6">
+                                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                                <span class="text-xs text-zinc-400 ml-3">Dabilio</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-zinc-50 rounded-xl">
+                                    <div>
+                                        <span class="text-sm font-medium text-zinc-800">Module Admission</span>
+                                        <p class="text-xs text-zinc-500">Connecté au site web</p>
+                                    </div>
+                                    <span
+                                        class="text-emerald-500 text-xs font-medium bg-emerald-50 px-3 py-1 rounded-full">Actif</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-zinc-50 rounded-xl">
+                                    <div>
+                                        <span class="text-sm font-medium text-zinc-800">Portail parents</span>
+                                        <p class="text-xs text-zinc-500">Connecté au site web</p>
+                                    </div>
+                                    <span
+                                        class="text-emerald-500 text-xs font-medium bg-emerald-50 px-3 py-1 rounded-full">Actif</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-[#B3644D]/10 rounded-full blur-2xl -z-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TARIFICATION ============ -->
+        <section id="tarification" class="py-24 border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#B3644D] text-sm tracking-tight uppercase mb-4 block">Tarification</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Un abonnement annuel<br>
+                        <span class="text-zinc-500">avec option webmaster dédié</span>
+                    </h2>
+                    <p class="text-zinc-500 max-w-xl mx-auto leading-relaxed">
+                        Des formules adaptées aux besoins de chaque établissement, sans engagement caché.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-medium text-zinc-900">Abonnement annuel</h3>
+                            <span class="text-xs text-emerald-600 font-medium bg-emerald-50 px-3 py-1 rounded-full">Site
+                                inclus</span>
+                        </div>
+                        <p class="text-4xl font-medium text-zinc-900 mb-2">
+                            Sur mesure
+                        </p>
+                        <p class="text-sm text-zinc-500 mb-6">
+                            Hébergement, domaine, maintenance et mises à jour inclus
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Création et design du site
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Hébergement haute performance
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Nom de domaine inclus
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Maintenance et mises à jour
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Certificat SSL et sécurité
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Support technique
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:gift-linear" width="18" height="18"
+                                    class="text-[#B3644D] flex-shrink-0 mt-0.5"></iconify-icon>
+                                <span><span class="font-medium">Gratuit</span> : Module Admission inclus</span>
+                            </li>
+                        </ul>
+                        <a href="mailto:marketing@dabil.io?subject=Demande%20de%20devis%20-%20Abonnement%20annuel"
+                            class="inline-flex items-center justify-center gap-2 w-full bg-[#170b30] text-white text-sm px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
+                            Demander un devis
+                            <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                        </a>
+                    </div>
+                    <div
+                        class="bg-white border-2 border-[#B3644D]/30 rounded-2xl p-8 hover:shadow-lg transition-shadow relative">
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#B3644D] text-white text-xs font-medium px-4 py-1 rounded-full">
+                            Recommandé
+                        </div>
+                        <div class="flex items-center justify-between mb-6 mt-2">
+                            <h3 class="text-xl font-medium text-zinc-900">Avec webmaster dédié</h3>
+                            <span class="text-xs text-[#B3644D] font-medium bg-[#B3644D]/10 px-3 py-1 rounded-full">Sur
+                                mesure</span>
+                        </div>
+                        <p class="text-4xl font-medium text-zinc-900 mb-2">
+                            Personnalisé
+                        </p>
+                        <p class="text-sm text-zinc-500 mb-6">
+                            Tout l'abonnement annuel + un webmaster dédié à votre établissement
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Tout l'abonnement annuel inclus
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Webmaster dédié et disponible
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Mises à jour illimitées du contenu
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Optimisation SEO continue
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Création de pages et fonctionnalités
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:check-circle-linear" width="18" height="18"
+                                    class="text-emerald-500 flex-shrink-0 mt-0.5"></iconify-icon>
+                                Priorité support et assistance
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                <iconify-icon icon="solar:gift-linear" width="18" height="18"
+                                    class="text-[#B3644D] flex-shrink-0 mt-0.5"></iconify-icon>
+                                <span><span class="font-medium">Gratuit</span> : Module Admission inclus</span>
+                            </li>
+                        </ul>
+                        <a href="mailto:marketing@dabil.io?subject=Demande%20de%20devis%20-%20Webmaster%20d%C3%A9di%C3%A9"
+                            class="inline-flex items-center justify-center gap-2 w-full bg-[#B3644D] text-white text-sm px-6 py-3.5 rounded-full shadow-sm hover:bg-[#a05440] transition-all active:scale-95">
+                            Contacter l'équipe
+                            <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA FINAL ============ -->
+        <section class="py-24 bg-[#1d2d44] text-center relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent">
+            </div>
+            <div class="max-w-3xl mx-auto px-6 relative z-10">
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-5 leading-tight">
+                    Prêt à transformer votre présence en ligne ?
+                </h2>
+                <p class="text-sm md:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed mb-8">
+                    Discutons de votre projet et trouvons la formule idéale pour votre établissement.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="mailto:marketing@dabil.io?subject=Demande%20de%20devis%20-%20Services%20web"
+                        class="inline-flex items-center gap-2 border border-zinc-500 text-zinc-300 text-base px-8 py-4 rounded-full hover:bg-white/10 transition-all">
+                        <iconify-icon icon="solar:document-text-linear" width="18" height="18"></iconify-icon>
+                        Recevoir un devis
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bg-[#1b1b1e] text-zinc-300 py-12 border-t border-[#2b2b2f]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="md:col-span-2">
+                <a href="../index.html" class="inline-flex items-center mb-4" aria-label="Accueil Dabilio">
+                    <img src="../public/logo_footer.png" alt="Dabilio" class="h-12 w-auto">
+                </a>
+                <p class="max-w-md text-sm leading-relaxed">Créer un écosystème éducatif interopérable pour une
+                    meilleure prise de décision et une expérience pédagogique optimisée.</p>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Liens utiles</h3>
+                <div class="flex flex-col gap-2 text-sm">
+                    <a href="../index.html" class="hover:text-white transition-colors">Accueil</a>
+                    <a href="../index.html#solutions" class="hover:text-white transition-colors">Nos solutions</a>
+                    <a href="../index.html#contact" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Restons en contact</h3>
+                <p class="text-sm mb-2">Lot 270 Bis Ambodiakondro, Ambohijanaka, Antananarivo 102</p>
+                <p class="text-sm mb-2">+261 34 13 798 01</p>
+                <p class="text-sm mb-4">marketing@dabil.io</p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/dabiliomg"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="Facebook Dabilio">
+                        <iconify-icon icon="solar:letter-unread-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dabilio/"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="LinkedIn Dabilio">
+                        <iconify-icon icon="solar:case-round-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-[#2b2b2f] flex flex-col md:flex-row gap-3 items-start md:items-center justify-between text-xs">
+            <p>© 2024 Dabilio. Tous droits réservés.</p>
+            <a href="../index.html" class="hover:text-white transition-colors">Politique de cookies et de vie privée</a>
+            <p class="md:ml-auto">made with ❤️ by <a href="https://dts.dabil.io" target="_blank"
+                    rel="noopener noreferrer" class="hover:text-white transition-colors">DTS</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuToggle = document.getElementById('menu-toggle');
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
