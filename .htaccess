@@ -1,0 +1,11 @@
+# Block .git directory
+<DirectoryMatch "^(.*/)?\.git/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+# Block .env file
+<FilesMatch "^\.env$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

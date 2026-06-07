@@ -86,18 +86,18 @@
                                     <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par type
                                         d'établissement</span>
                                 </div>
-                                <a href="../index.html#solution-ecoles"
+                                <a href="../solutions/ecoles.html"
                                     class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
                                     <span class="block text-sm font-medium">Pour les écoles</span>
                                     <span class="block text-xs text-zinc-500 mt-1">Primaire, collège et lycée</span>
                                 </a>
-                                <a href="../index.html#solution-universites"
+                                <a href="../solutions/universite.html"
                                     class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
                                     <span class="block text-sm font-medium">Pour les Universités</span>
                                     <span class="block text-xs text-zinc-500 mt-1">Pilotage académique et
                                         administratif</span>
                                 </a>
-                                <a href="../index.html#solution-centres-formation"
+                                <a href="../solutions/centre.html"
                                     class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
                                     <span class="block text-sm font-medium">Pour les Centres de Formation</span>
                                     <span class="block text-xs text-zinc-500 mt-1">Suivi des apprenants et parcours
@@ -218,7 +218,7 @@
                         aux écoles, universités et centres de formation de se référencer pour gagner en visibilité.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#inscription"
+                        <a href="#formulaire-inscription"
                             class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-base px-6 py-3.5 rounded-full shadow-sm hover:bg-white/25 transition-all active:scale-95">
                             Référencer mon établissement
                             <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
@@ -390,22 +390,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-[#001d3d] text-white rounded-3xl p-8 md:p-10">
+                    <div id="formulaire-inscription" class="bg-[#001d3d] text-white rounded-3xl p-8 md:p-10">
                         <span class="text-white text-sm tracking-tight uppercase mb-5 block">Inscription annuaire</span>
                         <h3 class="text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-2">
                             Inscrivez votre établissement.
                         </h3>
-                        <p class="text-white/50 text-sm mb-8">Accédez à l'annuaire et démarrez votre référencement.</p>
+                        <p class="text-white/50 text-sm mb-2">Accédez à l'annuaire et démarrez votre référencement.</p>
+                        <p class="text-white/50 text-sm mb-8">Notre équipe vous contactera pour finaliser votre demande.</p>
                         <form id="form-annuaire" class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Nom de l'établissement</span>
-                                    <input type="text" name="etablissement" placeholder="Ex : Lycée Joseph Ravoahangy"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nom de l'établissement <span class="text-red-400">*</span></span>
+                                    <input type="text" name="etablissement" placeholder="Ex : Lycée Joseph Ravoahangy" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
                                 </label>
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Type d'établissement</span>
-                                    <select name="type"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Type d'établissement <span class="text-red-400">*</span></span>
+                                    <select name="type" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-emerald-400 transition-colors">
                                         <option value="" class="text-zinc-900">Sélectionner…</option>
                                         <option value="ecole" class="text-zinc-900">École primaire / Collège / Lycée</option>
@@ -416,25 +417,25 @@
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Nom du responsable</span>
-                                    <input type="text" name="responsable" placeholder="Nom et prénom"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nom du responsable <span class="text-red-400">*</span></span>
+                                    <input type="text" name="responsable" placeholder="Nom et prénom" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
                                 </label>
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Email professionnel</span>
-                                    <input type="email" name="email" placeholder="contact@etablissement.mg"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Email professionnel <span class="text-red-400">*</span></span>
+                                    <input type="email" name="email" placeholder="contact@etablissement.mg" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
                                 </label>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Téléphone</span>
-                                    <input type="tel" name="telephone" placeholder="+261 XX XX XXX XX"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Téléphone <span class="text-red-400">*</span></span>
+                                    <input type="tel" name="telephone" placeholder="+261 XX XX XXX XX" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
                                 </label>
                                 <label class="block">
-                                    <span class="text-xs text-white/50 mb-1.5 block">Nombre d'élèves / étudiants</span>
-                                    <input type="number" name="effectifs" placeholder="Ex : 450" min="1"
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nombre d'élèves / étudiants <span class="text-red-400">*</span></span>
+                                    <input type="number" name="effectifs" placeholder="Ex : 450" min="1" required
                                         class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
                                 </label>
                             </div>
@@ -490,7 +491,7 @@
                                 <span><span class="font-medium">Gratuit</span> : Module Admission inclus</span>
                             </li>
                         </ul>
-                        <a href="#"
+                        <a href="#formulaire-inscription"
                             class="inline-flex items-center justify-center gap-2 w-full bg-[#170b30] text-white text-sm px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
                             Référencer mon école
                             <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
@@ -523,7 +524,7 @@
                                 <span><span class="font-medium">Gratuit</span> : Module Admission inclus</span>
                             </li>
                         </ul>
-                        <a href="#"
+                        <a href="#formulaire-inscription"
                             class="inline-flex items-center justify-center gap-2 w-full bg-[#170b30] text-white text-sm px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
                             Référencer mon centre
                             <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
@@ -556,7 +557,7 @@
                                 <span><span class="font-medium">Gratuit</span> : Module Admission inclus</span>
                             </li>
                         </ul>
-                        <a href="#"
+                        <a href="#formulaire-inscription"
                             class="inline-flex items-center justify-center gap-2 w-full bg-[#170b30] text-white text-sm px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95 whitespace-nowrap">
                             Référencer mon université
                             <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
@@ -578,7 +579,7 @@
                     Rejoignez notre annuaire et facilitez l'orientation des parents vers votre établissement.
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="#inscription"
+                    <a href="#formulaire-inscription"
                         class="inline-flex items-center gap-2 bg-[#f9f7f3] text-black text-base font-medium px-8 py-4 rounded-full shadow-lg hover:bg-[#f2cc8f] transition-all">
                         Référencer mon établissement
                         <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
@@ -590,20 +591,72 @@
 
     <!-- ============ FOOTER ============ -->
     <footer class="bg-[#1b1b1e] text-zinc-300 py-12 border-t border-[#2b2b2f]">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-6 gap-x-4 gap-y-8">
             <div class="md:col-span-2">
                 <a href="../index.html" class="inline-flex items-center mb-4" aria-label="Accueil Dabilio">
                     <img src="../public/logo_footer.png" alt="Dabilio" class="h-12 w-auto">
                 </a>
-                <p class="max-w-md text-sm leading-relaxed">Créer un écosystème éducatif interopérable pour une
-                    meilleure prise de décision et une expérience pédagogique optimisée.</p>
+                <p class="max-w-md text-sm leading-relaxed">
+                    Creer un écosystème éducatif interopérable<br>
+                    pour une meilleure prise de décision<br>
+                    et une expérience pédagogique optimisée.
+                </p>
             </div>
             <div>
-                <h3 class="text-white text-sm font-medium mb-4">Liens utiles</h3>
-                <div class="flex flex-col gap-2 text-sm">
-                    <a href="../index.html" class="hover:text-white transition-colors">Accueil</a>
-                    <a href="../index.html#solutions" class="hover:text-white transition-colors">Nos solutions</a>
-                    <a href="../index.html#contact" class="hover:text-white transition-colors">Contact</a>
+                <h3 class="text-white text-sm font-medium mb-4">Accueil</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../index.html" class="text-zinc-400 hover:text-white transition-colors">Accueil</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Solutions</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../solutions/ecoles.html" class="text-zinc-400 hover:text-white transition-colors">Pour les écoles</a>
+                    <a href="../solutions/universite.html" class="text-zinc-400 hover:text-white transition-colors">Pour les universités</a>
+                    <a href="../solutions/centre.html" class="text-zinc-400 hover:text-white transition-colors">Centres de formation</a>
+                    <a href="../index.html#plateforme" class="text-zinc-400 hover:text-white transition-colors">La plateforme Dabilio</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Services</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="services.html" class="text-zinc-400 hover:text-white transition-colors">Création web</a>
+                    <a href="annuaire.html" class="text-zinc-400 hover:text-white transition-colors">Annuaire</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Contact</h3>
+                <p class="text-sm mb-2">Lot 270 Bis Ambodiakondro, Ambohijanaka, Antananarivo 102</p>
+                <p class="text-sm mb-2">+261 34 13 798 01</p>
+                <p class="text-sm mb-4">marketing@dabil.io</p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/dabiliomg"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="Facebook Dabilio">
+                        <iconify-icon icon="solar:letter-unread-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dabilio/"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="LinkedIn Dabilio">
+                        <iconify-icon icon="solar:case-round-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="../index.html#contact" class="text-zinc-400 hover:text-white transition-colors text-sm mt-2 block w-full">Nous écrire</a>
+                </div>
+            </div>
+        </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Navigation</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../index.html" class="text-zinc-300 hover:text-white transition-colors">Accueil</a>
+                    <span class="text-zinc-500 text-xs font-medium tracking-wide mt-2 mb-1 block">Solutions</span>
+                    <a href="../solutions/ecoles.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Pour les écoles</a>
+                    <a href="../solutions/universite.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Pour les universités</a>
+                    <a href="../solutions/centre.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Centres de formation</a>
+                    <a href="../index.html#plateforme" class="text-zinc-400 hover:text-white transition-colors pl-3">La plateforme Dabilio</a>
+                    <span class="text-zinc-500 text-xs font-medium tracking-wide mt-2 mb-1 block">Services</span>
+                    <a href="services.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Création web</a>
+                    <a href="annuaire.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Annuaire</a>
+                    <a href="../index.html#contact" class="text-zinc-300 hover:text-white transition-colors mt-2 block">Contact</a>
                 </div>
             </div>
             <div>
@@ -641,6 +694,38 @@
             if (menuToggle && mobileMenu) {
                 menuToggle.addEventListener('click', function () {
                     mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            var form = document.getElementById('form-annuaire');
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    var btn = form.querySelector('button[type="submit"]');
+                    var orig = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML = 'Envoi en cours…';
+
+                    var data = { type: 'Annuaire' };
+                    var fd = new FormData(form);
+                    fd.forEach(function (value, key) { data[key] = value; });
+
+                    try {
+                        var res = await fetch('../send.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                        });
+                        var json = await res.json();
+                        if (!res.ok) throw new Error(json.error || 'Erreur');
+                        btn.innerHTML = '✓ Message envoyé';
+                        form.reset();
+                        setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+                    } catch (err) {
+                        console.error('Form error:', err);
+                        btn.innerHTML = '✗ Erreur - réessayer';
+                        setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+                    }
                 });
             }
         });

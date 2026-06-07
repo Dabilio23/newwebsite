@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution pour les écoles - Dabilio</title>
+    <meta name="description"
+        content="Dabilio pour les écoles primaires, collèges et lycées. Gérez les admissions, la vie scolaire, les notes et la communication avec les parents.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        #sticky-cta {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        #sticky-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#FAFAFA] text-zinc-900 antialiased selection:bg-emerald-200 selection:text-emerald-950 overflow-x-hidden scroll-smooth">
+
+    <!-- ============ NAV ============ -->
+    <nav class="fixed top-0 inset-x-0 z-50 bg-[#FAFAFA]/85 backdrop-blur-md border-b border-zinc-200/60">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3" aria-label="Accueil Dabilio">
+                <img src="../public/logo.png" alt="Dabilio" class="h-11 w-auto">
+            </a>
+            <div class="hidden lg:flex items-center gap-8 text-sm text-zinc-500">
+                <a href="../index.html" class="hover:text-zinc-900 transition-colors">Accueil</a>
+                <div class="relative group">
+                    <a href="../index.html#solutions"
+                        class="inline-flex items-center gap-1 hover:text-zinc-900 transition-colors py-6">
+                        Solutions
+                        <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+                    </a>
+                    <div
+                        class="absolute left-0 top-full w-[820px] translate-y-2 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par type
+                                        d'établissement</span>
+                                </div>
+                                <a href="ecoles.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les écoles</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Primaire, collège et lycée</span>
+                                </a>
+                                <a href="universite.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les Universités</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Pilotage académique et
+                                        administratif</span>
+                                </a>
+                                <a href="centre.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Pour les Centres de Formation</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Suivi des apprenants et parcours
+                                        métiers</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par
+                                        outil</span>
+                                </div>
+                                <a href="../index.html#plateforme"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">La plateforme Dabilio</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Modules de gestion, vie scolaire,
+                                        pédagogie, et finances</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <div class="px-2 pb-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400">Par
+                                        modules</span>
+                                </div>
+                                <a href="../modules/admission.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Module Admission <iconify-icon
+                                            icon="solar:star-bold" width="14" height="14"
+                                            class="text-emerald-500 inline-block align-middle"></iconify-icon></span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Gratuit. Inscriptions, classes,
+                                        déploiement 48h</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="../modules/services.html"
+                        class="inline-flex items-center gap-1 hover:text-zinc-900 transition-colors py-6">
+                        Services
+                        <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
+                    </a>
+                    <div
+                        class="absolute left-0 top-full w-[580px] translate-y-2 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <a href="../modules/services.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Création web pour établissements
+                                        scolaires</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Sites internet sur mesure pour
+                                        écoles,
+                                        universités et centres de formation</span>
+                                </a>
+                            </div>
+                            <div class="w-px bg-zinc-100 self-stretch mx-1"></div>
+                            <div class="flex-1">
+                                <a href="../modules/annuaire.html"
+                                    class="block rounded-xl px-3 py-3 text-zinc-900 hover:bg-zinc-50 transition-colors">
+                                    <span class="block text-sm font-medium">Annuaire des établissements</span>
+                                    <span class="block text-xs text-zinc-500 mt-1">Référencez votre établissement et
+                                        soyez trouvé par les parents</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="hover:text-zinc-900 transition-colors">Contact</a>
+            </div>
+            <a href="#inscrire"
+                class="hidden md:inline-flex items-center gap-2 bg-[#170b30] text-white text-sm px-4 py-2 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
+                Demander une démo
+                <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+            </a>
+            <button id="menu-toggle"
+                class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+                aria-label="Menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="22" height="22"></iconify-icon>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu"
+            class="lg:hidden hidden border-t border-zinc-200 bg-[#FAFAFA] px-6 py-4 space-y-3 text-sm">
+            <a href="../index.html" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Accueil</a>
+            <a href="../index.html#solutions"
+                class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Solutions</a>
+            <a href="../modules/services.html" class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Services</a>
+            <a href="../index.html#contact"
+                class="block py-2 text-zinc-500 hover:text-zinc-900 transition-colors">Contact</a>
+            <a href="#inscrire"
+                class="block text-center bg-[#170b30] text-white px-4 py-3 rounded-full transition-all active:scale-95 mt-2">
+                Demander une démo
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ============ HERO ============ -->
+        <section class="relative pt-36 pb-28 overflow-hidden min-h-[85vh] flex flex-col justify-center">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../public/solution_ecole.webp');"></div>
+                <div class="absolute inset-0 bg-black/50"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+                <div class="max-w-xl">
+                    <div
+                        class="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1 rounded-full mb-6 backdrop-blur-sm">
+                        <iconify-icon icon="solar:buildings-2-linear" width="14" height="14"
+                            class="text-white"></iconify-icon>
+                        <span class="text-white text-xs font-medium uppercase tracking-wide">Pour les
+                            écoles</span>
+                    </div>
+                    <h1
+                        class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mb-6">
+                        La solution complète<br>
+                        <span class="text-[#f2cc8f]"> pour votre école</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
+                        Simplifiez la gestion de votre établissement scolaire : admissions, vie scolaire, notes,
+                        communication avec les parents: le tout dans une seule plateforme.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                        <div class="flex items-center gap-3 text-sm">
+                            <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                class="text-emerald-400 flex-shrink-0"></iconify-icon>
+                            <span class="text-white/90">Gestion administrative centralisée</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                class="text-emerald-400 flex-shrink-0"></iconify-icon>
+                            <span class="text-white/90">Suivi pédagogique en temps réel</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                class="text-emerald-400 flex-shrink-0"></iconify-icon>
+                            <span class="text-white/90">Communication parents simplifiée</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <iconify-icon icon="solar:check-circle-linear" width="20" height="20"
+                                class="text-emerald-400 flex-shrink-0"></iconify-icon>
+                            <span class="text-white/90">Déploiement rapide, 48h chrono</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <a href="#inscrire"
+                            class="inline-flex items-center gap-2 bg-white text-[#170b30] text-base px-6 py-3.5 rounded-full shadow-sm hover:bg-white/90 transition-all active:scale-95">
+                            Demander une démo
+                            <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+                        </a>
+                        <a href="../modules/admission.html"
+                            class="inline-flex items-center gap-2 border border-white/30 text-white/80 text-base px-6 py-3.5 rounded-full hover:bg-white/10 transition-all">
+                            <iconify-icon icon="solar:gift-linear" width="18" height="18"></iconify-icon>
+                            Module gratuit Admission
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PROBLÈME / SOLUTION ============ -->
+        <section class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#084c61] text-sm tracking-tight uppercase mb-4 block">Le constat</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Diriger une école<br>
+                        <span class="text-zinc-500">n'a jamais été aussi complexe</span>
+                    </h2>
+                    <p class="text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+                        Entre la gestion administrative, le suivi pédagogique et la communication avec les familles,
+                        les directeurs d'école manquent souvent de temps et d'outils adaptés.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div class="relative bg-white border-2 border-orange-100 rounded-2xl p-8 shadow-sm">
+                        <div
+                            class="absolute -top-4 left-6 inline-flex items-center gap-2 bg-white border border-orange-200 px-4 py-1.5 rounded-full">
+                            <span class="w-5 h-5 rounded-full bg-orange-400 text-white flex items-center justify-center text-xs font-bold">✕</span>
+                            <span class="text-orange-600 text-sm font-medium">Sans organisation</span>
+                        </div>
+                        <div class="mt-6 space-y-5">
+                            <div class="flex items-center gap-4 p-4 bg-orange-50/50 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:folder-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Dossiers administratifs dispersés</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-orange-50/50 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:notebook-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Notes et relevés papier chronophages</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-orange-50/50 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:chat-round-dots-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Communication difficile avec les parents</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-orange-50/50 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:chart-square-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Aucune visibilité sur les performances</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative bg-white border-2 border-[#084c61]/20 rounded-2xl p-8 shadow-sm">
+                        <div
+                            class="absolute -top-4 left-6 inline-flex items-center gap-2 bg-white border border-[#084c61]/20 px-4 py-1.5 rounded-full">
+                            <span class="w-5 h-5 rounded-full bg-[#084c61] text-white flex items-center justify-center text-xs font-bold">✓</span>
+                            <span class="text-[#084c61] text-sm font-medium">Avec Dabilio</span>
+                        </div>
+                        <div class="mt-6 space-y-5">
+                            <div class="flex items-center gap-4 p-4 bg-[#084c61]/5 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:server-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Toutes les données centralisées</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-[#084c61]/5 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:notebook-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Suivi numérique des notes et compétences</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-[#084c61]/5 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:chat-round-dots-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Notifications et messages aux familles</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-[#084c61]/5 rounded-xl">
+                                <span class="w-8 h-8 rounded-lg bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0">
+                                    <iconify-icon icon="solar:graph-up-linear" width="16" height="16"></iconify-icon>
+                                </span>
+                                <span class="text-zinc-700 text-sm">Tableaux de bord pour piloter l'établissement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FONCTIONNALITÉS ============ -->
+        <section class="py-24 bg-[#FAFAFA] border-t border-zinc-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#084c61] text-sm tracking-tight uppercase mb-4 block">Fonctionnalités</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Tout ce qu'il faut<br>
+                        <span class="text-zinc-500">pour piloter votre école</span>
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:user-plus-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Admissions en ligne</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Formulaire d'inscription en ligne, suivi des
+                            candidatures, gestion des dossiers élèves.</p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:notebook-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Gestion des notes</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Saisie des notes, relevés automatiques,
+                            moyennes, et appréciations par classe.</p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:calendar-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Emplois du temps</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Planification des cours, gestion des salles et
+                            des remplacements en un clin d'œil.</p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:chat-round-dots-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Communication parents</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Notifications, messages, alertes et bulletins
+                            directement aux familles.</p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:chart-square-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Statistiques et rapports</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Tableaux de bord, indicateurs de performance,
+                            taux de réussite et d'assiduité.</p>
+                    </div>
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:shield-check-linear" width="22" height="22"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Sécurité des données</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Données hébergées en toute sécurité, accès
+                            protégés et conformité assurée.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ POURQUOI DABILIO ============ -->
+        <section class="py-24 bg-[#1d2d44] text-white relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-500 to-transparent">
+            </div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-zinc-400 text-sm tracking-tight uppercase mb-4 block">Pourquoi Dabilio</span>
+                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-4">
+                        Une solution pensée<br>
+                        <span class="text-zinc-300">pour les écoles</span>
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:widget-linear" width="20" height="20"
+                                class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-medium text-white mb-2">Simple</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">Une interface claire, conçue pour être utilisée
+                            sans formation technique.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:wallet-linear" width="20" height="20"
+                                class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-medium text-white mb-2">Abordable</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">Module Admission gratuit. Solutions modulaires
+                            pour tous les budgets.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:clock-circle-linear" width="20" height="20"
+                                class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-medium text-white mb-2">Rapide</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">Déploiement en 48h chrono. Accompagnement
+                            personnalisé à chaque étape.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:graph-up-linear" width="20" height="20"
+                                class="text-emerald-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-medium text-white mb-2">Évolutif</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">Ajoutez des modules au fil du temps, sans
+                            changer de plateforme.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ MODULES COMPLÉMENTAIRES ============ -->
+        <section class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <span class="text-[#084c61] text-sm tracking-tight uppercase mb-4 block">Modules
+                        complémentaires</span>
+                    <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                        Des solutions qui grandissent<br>
+                        <span class="text-zinc-500">avec votre établissement</span>
+                    </h2>
+                    <p class="text-zinc-500 max-w-xl mx-auto leading-relaxed">
+                        Chaque module est indépendant. Commencez par l'essentiel et ajoutez des fonctionnalités selon
+                        vos besoins.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:star-bold" width="20" height="20"
+                                class="text-emerald-500"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Admission</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Formulaire en ligne, suivi des
+                            candidatures, gestion des inscriptions.</p>
+                        <span
+                            class="text-xs text-emerald-600 font-medium bg-emerald-50 px-3 py-1 rounded-full">Gratuit</span>
+                    </div>
+                    <div class="border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:notebook-linear" width="20" height="20"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Vie scolaire</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Emplois du temps, notes, absences, suivi
+                            pédagogique complet.</p>
+                        <span class="text-xs text-zinc-400 font-medium">Module payant</span>
+                    </div>
+                    <div class="border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-11 h-11 rounded-xl bg-[#084c61]/10 flex items-center justify-center mb-4">
+                            <iconify-icon icon="solar:wallet-linear" width="20" height="20"
+                                class="text-[#084c61]"></iconify-icon>
+                        </div>
+                        <h3 class="text-base font-medium text-zinc-800 mb-2">Finances</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Facturation, suivi des paiements, gestion
+                            des frais scolaires.</p>
+                        <span class="text-xs text-zinc-400 font-medium">Module payant</span>
+                    </div>
+                </div>
+                <div class="text-center mt-10">
+                    <a href="../modules/admission.html"
+                        class="inline-flex items-center gap-2 bg-[#170b30] text-white text-base px-6 py-3.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95">
+                        Découvrir le module gratuit Admission
+                        <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ COMMENT ÇA MARCHE ============ -->
+        <section class="py-24 bg-[#FAFAFA] border-t border-zinc-100">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <span class="text-[#084c61] text-sm tracking-tight uppercase mb-4 block">Comment ça marche</span>
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-4">
+                    Prêt en quelques jours,<br>
+                    <span class="text-zinc-500">pas en quelques mois</span>
+                </h2>
+                <p class="text-lg text-zinc-500 leading-relaxed mb-10 max-w-xl mx-auto">
+                    Lancez-vous simplement, on vous accompagne à chaque étape.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-0 relative">
+                    <div class="hidden md:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-zinc-200"></div>
+
+                    <div class="relative flex flex-col items-center text-center md:px-4">
+                        <span
+                            class="relative z-10 w-10 h-10 rounded-full bg-[#170b30] text-white text-sm font-medium flex items-center justify-center mb-3">1</span>
+                        <p class="text-zinc-800 font-medium text-sm">Vous nous contactez</p>
+                        <p class="text-xs text-zinc-500 mt-1">Via le formulaire ci-dessous.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center text-center md:px-4">
+                        <span
+                            class="relative z-10 w-10 h-10 rounded-full bg-[#170b30] text-white text-sm font-medium flex items-center justify-center mb-3">2</span>
+                        <p class="text-zinc-800 font-medium text-sm">On active votre accès</p>
+                        <p class="text-xs text-zinc-500 mt-1">Sous 48h, gratuitement.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center text-center md:px-4">
+                        <span
+                            class="relative z-10 w-10 h-10 rounded-full bg-[#170b30] text-white text-sm font-medium flex items-center justify-center mb-3">3</span>
+                        <p class="text-zinc-800 font-medium text-sm">Vous configurez votre école</p>
+                        <p class="text-xs text-zinc-500 mt-1">Classes, niveaux, enseignants.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center text-center md:px-4">
+                        <span
+                            class="relative z-10 w-10 h-10 rounded-full bg-[#170b30] text-white text-sm font-medium flex items-center justify-center mb-3">4</span>
+                        <p class="text-zinc-800 font-medium text-sm">C'est parti !</p>
+                        <p class="text-xs text-zinc-500 mt-1">Vous gérez votre école depuis Dabilio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA / FORMULAIRE ============ -->
+        <section id="inscrire" class="py-24 bg-white border-t border-zinc-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+                    <div>
+                        <span class="text-[#084c61] text-sm tracking-tight uppercase mb-4 block">Prêt à passer à
+                            l'action</span>
+                        <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-tight mb-6">
+                            Simplifiez la gestion<br>
+                            <span class="text-zinc-500">de votre école dès aujourd'hui.</span>
+                        </h2>
+                        <p class="text-lg text-zinc-500 leading-relaxed mb-8">
+                            Laissez-nous vos coordonnées et découvrez comment Dabilio peut transformer votre
+                            établissement scolaire.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <span
+                                    class="w-8 h-8 rounded-full bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <iconify-icon icon="solar:check-circle-linear" width="16"
+                                        height="16"></iconify-icon>
+                                </span>
+                                <div>
+                                    <p class="font-medium text-zinc-900">Gratuit</p>
+                                    <p class="text-sm text-zinc-500">Module Admission accessible sans abonnement.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span
+                                    class="w-8 h-8 rounded-full bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <iconify-icon icon="solar:check-circle-linear" width="16"
+                                        height="16"></iconify-icon>
+                                </span>
+                                <div>
+                                    <p class="font-medium text-zinc-900">Déploiement 48h</p>
+                                    <p class="text-sm text-zinc-500">Votre plateforme opérationnelle en un temps record.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span
+                                    class="w-8 h-8 rounded-full bg-[#084c61]/10 text-[#084c61] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <iconify-icon icon="solar:check-circle-linear" width="16"
+                                        height="16"></iconify-icon>
+                                </span>
+                                <div>
+                                    <p class="font-medium text-zinc-900">Accompagnement</p>
+                                    <p class="text-sm text-zinc-500">Une équipe dédiée pour vous aider à démarrer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#001d3d] text-white rounded-3xl p-8 md:p-10">
+                        <span class="text-white text-sm tracking-tight uppercase mb-5 block">Commencer</span>
+                        <h3 class="text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-2">
+                            Demandez une démo.
+                        </h3>
+                        <p class="text-white/50 text-sm mb-2">Remplissez ce formulaire et notre équipe vous recontactera
+                            sous 48h.</p>
+                        <p class="text-white/50 text-sm mb-8">Notre équipe vous contactera pour activer votre compte.</p>
+                        <form id="form-ecoles" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nom de l'établissement <span
+                                            class="text-red-400">*</span></span>
+                                    <input type="text" name="etablissement" placeholder="Ex : Lycée Joseph Ravoahangy"
+                                        required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Type d'établissement <span
+                                            class="text-red-400">*</span></span>
+                                    <select name="etablissement_type" required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-emerald-400 transition-colors">
+                                        <option value="" class="text-zinc-900">Sélectionner…</option>
+                                        <option value="ecole" class="text-zinc-900">École primaire</option>
+                                        <option value="college" class="text-zinc-900">Collège</option>
+                                        <option value="lycee" class="text-zinc-900">Lycée</option>
+                                        <option value="autre" class="text-zinc-900">Autre</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nom du responsable <span
+                                            class="text-red-400">*</span></span>
+                                    <input type="text" name="directeur" placeholder="Nom et prénom" required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Email professionnel <span
+                                            class="text-red-400">*</span></span>
+                                    <input type="email" name="email" placeholder="contact@etablissement.mg" required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
+                                </label>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Téléphone <span
+                                            class="text-red-400">*</span></span>
+                                    <input type="tel" name="telephone" placeholder="+261 XX XX XXX XX" required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-white/50 mb-1.5 block">Nombre d'élèves <span
+                                            class="text-red-400">*</span></span>
+                                    <input type="number" name="nb_eleves" placeholder="Ex : 450" min="1" required
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-emerald-400 transition-colors">
+                                </label>
+                            </div>
+                            <button type="submit"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-[#001d3d] text-sm font-medium px-6 py-3.5 rounded-xl transition-all mt-2">
+                                Envoyer la demande
+                                <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA FINAL ============ -->
+        <section class="py-24 bg-[#1d2d44] text-center relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent">
+            </div>
+            <div class="max-w-3xl mx-auto px-6 relative z-10">
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-5 leading-tight">
+                    Prêt à moderniser votre école ?
+                </h2>
+                <p class="text-sm md:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed mb-8">
+                    Rejoignez les établissements qui nous font confiance pour piloter leur gestion scolaire au
+                    quotidien.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#inscrire"
+                        class="inline-flex items-center gap-2 bg-white text-[#1d2d44] text-base font-medium px-8 py-4 rounded-full shadow-lg hover:bg-white/90 transition-all">
+                        Demander une démo
+                        <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="../modules/admission.html"
+                        class="inline-flex items-center gap-2 border border-zinc-500 text-zinc-300 text-base px-8 py-4 rounded-full hover:bg-white/10 transition-all">
+                        Découvrir le module gratuit
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ STICKY CTA ============ -->
+    <div id="sticky-cta" class="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-zinc-200 shadow-2xl py-3 px-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4 text-sm">
+                <span class="hidden sm:flex items-center gap-1.5 text-zinc-500">
+                    <iconify-icon icon="solar:widget-linear" width="16" height="16"
+                        class="text-[#084c61]"></iconify-icon>
+                    Solution écoles
+                </span>
+                <span class="hidden sm:flex items-center gap-1.5 text-zinc-500">
+                    <iconify-icon icon="solar:shield-check-linear" width="16" height="16"
+                        class="text-[#084c61]"></iconify-icon>
+                    Sans engagement
+                </span>
+                <span class="flex items-center gap-1.5 text-zinc-500">
+                    <iconify-icon icon="solar:clock-circle-linear" width="16" height="16"
+                        class="text-[#084c61]"></iconify-icon>
+                    Déploiement 48h
+                </span>
+            </div>
+            <a href="#inscrire"
+                class="inline-flex items-center gap-2 bg-[#170b30] text-white text-sm px-5 py-2.5 rounded-full shadow-sm hover:bg-[#24114a] transition-all active:scale-95 flex-shrink-0">
+                Demander une démo
+                <iconify-icon icon="solar:arrow-right-linear" width="15" height="15"></iconify-icon>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bg-[#1b1b1e] text-zinc-300 py-12 border-t border-[#2b2b2f]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-6 gap-x-4 gap-y-8">
+            <div class="md:col-span-2">
+                <a href="../index.html" class="inline-flex items-center mb-4" aria-label="Accueil Dabilio">
+                    <img src="../public/logo_footer.png" alt="Dabilio" class="h-12 w-auto">
+                </a>
+                <p class="max-w-md text-sm leading-relaxed">
+                    Creer un écosystème éducatif interopérable<br>
+                    pour une meilleure prise de décision<br>
+                    et une expérience pédagogique optimisée.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Accueil</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../index.html" class="text-zinc-400 hover:text-white transition-colors">Accueil</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Solutions</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="ecoles.html" class="text-zinc-400 hover:text-white transition-colors">Pour les écoles</a>
+                    <a href="universite.html" class="text-zinc-400 hover:text-white transition-colors">Pour les universités</a>
+                    <a href="centre.html" class="text-zinc-400 hover:text-white transition-colors">Centres de formation</a>
+                    <a href="../index.html#plateforme" class="text-zinc-400 hover:text-white transition-colors">La plateforme Dabilio</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Services</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../modules/services.html" class="text-zinc-400 hover:text-white transition-colors">Création web</a>
+                    <a href="../modules/annuaire.html" class="text-zinc-400 hover:text-white transition-colors">Annuaire</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Contact</h3>
+                <p class="text-sm mb-2">Lot 270 Bis Ambodiakondro, Ambohijanaka, Antananarivo 102</p>
+                <p class="text-sm mb-2">+261 34 13 798 01</p>
+                <p class="text-sm mb-4">marketing@dabil.io</p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/dabiliomg"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="Facebook Dabilio">
+                        <iconify-icon icon="solar:letter-unread-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dabilio/"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="LinkedIn Dabilio">
+                        <iconify-icon icon="solar:case-round-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="../index.html#contact" class="text-zinc-400 hover:text-white transition-colors text-sm mt-2 block w-full">Nous écrire</a>
+                </div>
+            </div>
+        </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Navigation</h3>
+                <div class="flex flex-col gap-1.5 text-sm">
+                    <a href="../index.html" class="text-zinc-300 hover:text-white transition-colors">Accueil</a>
+                    <span class="text-zinc-500 text-xs font-medium tracking-wide mt-2 mb-1 block">Solutions</span>
+                    <a href="ecoles.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Pour les écoles</a>
+                    <a href="universite.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Pour les universités</a>
+                    <a href="centre.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Centres de formation</a>
+                    <a href="../index.html#plateforme" class="text-zinc-400 hover:text-white transition-colors pl-3">La plateforme Dabilio</a>
+                    <span class="text-zinc-500 text-xs font-medium tracking-wide mt-2 mb-1 block">Services</span>
+                    <a href="../modules/services.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Création web</a>
+                    <a href="../modules/annuaire.html" class="text-zinc-400 hover:text-white transition-colors pl-3">Annuaire</a>
+                    <a href="../index.html#contact" class="text-zinc-300 hover:text-white transition-colors mt-2 block">Contact</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white text-sm font-medium mb-4">Restons en contact</h3>
+                <p class="text-sm mb-2">Lot 270 Bis Ambodiakondro, Ambohijanaka, Antananarivo 102</p>
+                <p class="text-sm mb-2">+261 34 13 798 01</p>
+                <p class="text-sm mb-4">marketing@dabil.io</p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/dabiliomg"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="Facebook Dabilio">
+                        <iconify-icon icon="solar:letter-unread-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dabilio/"
+                        class="w-9 h-9 rounded-full bg-[#252529] border border-[#34343a] text-zinc-300 flex items-center justify-center hover:text-white"
+                        aria-label="LinkedIn Dabilio">
+                        <iconify-icon icon="solar:case-round-linear" width="18" height="18"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-[#2b2b2f] flex flex-col md:flex-row gap-3 items-start md:items-center justify-between text-xs">
+            <p>© 2024 Dabilio. Tous droits réservés.</p>
+            <a href="../index.html" class="hover:text-white transition-colors">Politique de cookies et de vie privée</a>
+            <p class="md:ml-auto">made with ❤️ by <a href="https://dts.dabil.io" target="_blank"
+                    rel="noopener noreferrer" class="hover:text-white transition-colors">DTS</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuToggle = document.getElementById('menu-toggle');
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Sticky CTA
+            var sticky = document.getElementById('sticky-cta');
+            if (sticky) {
+                var hero = document.querySelector('section');
+                window.addEventListener('scroll', function () {
+                    if (hero) {
+                        var heroBottom = hero.getBoundingClientRect().bottom;
+                        sticky.classList.toggle('visible', heroBottom < 0);
+                    }
+                }, { passive: true });
+            }
+
+            // Form submission
+            var form = document.getElementById('form-ecoles');
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    var btn = form.querySelector('button[type="submit"]');
+                    var orig = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML = 'Envoi en cours…';
+
+                    var data = { type: 'Ecoles' };
+                    var fd = new FormData(form);
+                    fd.forEach(function (value, key) { data[key] = value; });
+
+                    try {
+                        var res = await fetch('../send.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                        });
+                        var json = await res.json();
+                        if (!res.ok) throw new Error(json.error || 'Erreur');
+                        btn.innerHTML = '✓ Message envoyé';
+                        form.reset();
+                        setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+                    } catch (err) {
+                        console.error('Form error:', err);
+                        btn.innerHTML = '✗ Erreur - réessayer';
+                        setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

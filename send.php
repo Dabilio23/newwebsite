@@ -76,8 +76,6 @@ curl_setopt_array($ch, [
         'subject' => $subject,
         'text' => $text,
     ]),
-    CURLOPT_SSL_VERIFYPEER => false,
-    CURLOPT_SSL_VERIFYHOST => false,
     CURLOPT_TIMEOUT => 15,
 ]);
 
