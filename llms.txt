@@ -1,0 +1,29 @@
+# Dabilio
+
+> Dabilio est une plateforme de gestion scolaire tout-en-un pour les établissements d'enseignement (écoles, universités, centres de formation). Elle centralise la gestion administrative, la vie scolaire, la communication avec les familles, les finances et l'orientation dans un écosystème éducatif intelligent.
+
+## Pages principales
+
+- [Accueil](https://dabil.io/): Présentation de la plateforme, modules disponibles, tarification et formulaire de contact.
+- [Module Admission](https://dabil.io/modules/admission.html): Gestion des pré-inscriptions et admissions en ligne, suivi des candidatures en temps réel, gratuit pour tous les établissements.
+- [Annuaire scolaire](https://dabil.io/modules/annuaire.html): Annuaire gratuit des établissements scolaires. Les parents trouvent l'école idéale, les établissements gagnent en visibilité.
+- [Services web](https://dabil.io/modules/services.html): Création de sites internet pour établissements scolaires, intégration d'outils et accompagnement à la transformation digitale.
+- [Solution Écoles](https://dabil.io/solutions/ecoles.html): Solution dédiée aux écoles primaires, collèges et lycées.
+- [Solution Universités](https://dabil.io/solutions/universite.html): Solution dédiée aux universités et grandes écoles.
+- [Solution Centres de formation](https://dabil.io/solutions/centre.html): Solution dédiée aux centres de formation professionnelle.
+
+## Produit
+
+Dabilio est un SaaS éducatif modulaire. Les établissements commencent gratuitement avec le module Admission, puis activent les modules selon leurs besoins :
+
+- **Admission** — Gratuit. Gestion des inscriptions, paramétrage de l'établissement.
+- **Vie scolaire** — Emplois du temps, présences, notes, bulletins.
+- **Communication** — Messagerie avec les familles, notifications, portail parents.
+- **Finances** — Gestion des frais de scolarité, paiements Mobile Money.
+- **Annuaire** — Référencement de l'établissement, visibilité en ligne.
+- **Services web** — Création de site internet sur mesure pour l'établissement.
+
+## Contact
+
+- Email : hello@dabil.io
+- Site : https://dabil.io
