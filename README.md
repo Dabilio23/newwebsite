@@ -24,7 +24,7 @@ Site vitrine de [Dabilio](https://dabil.io), plateforme de gestion scolaire pour
 
 - **Frontend** — HTML5, Tailwind CSS (CDN), Iconify
 - **Backend** — PHP
-- 
+  
 ## Configuration
 
 Les formulaires envoient les données à `send.php` qui relaie vers `marketing@dabil.io` via l'API Resend.
