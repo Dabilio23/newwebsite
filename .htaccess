@@ -1,11 +1,15 @@
-# Block .git directory
-<DirectoryMatch "^(.*/)?\.git/">
-    Order allow,deny
-    Deny from all
-</DirectoryMatch>
+# Disable directory listing
+Options -Indexes
 
-# Block .env file
-<FilesMatch "^\.env$">
-    Order allow,deny
-    Deny from all
+# Default index files
+DirectoryIndex index.html index.php
+
+# Protect .env file
+<Files ".env">
+    Require all denied
+</Files>
+
+# Protect hidden files like .gitignore, .env, etc.
+<FilesMatch "^\.">
+    Require all denied
 </FilesMatch>
