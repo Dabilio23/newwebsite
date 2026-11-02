@@ -38,7 +38,7 @@ foreach ($input as $key => $value) {
 }
 $text = implode("\n", $lines);
 
-$apiKey = getenv('RESEND_API_KEY');
+$apiKey = getenv('BREVO_API_KEY');
 if (!$apiKey) {
     $envFile = __DIR__ . '/.env';
     if (file_exists($envFile)) {
@@ -48,7 +48,7 @@ if (!$apiKey) {
                 $line = trim($line);
                 if ($line === '' || $line[0] === '#') continue;
                 $parts = explode('=', $line, 2);
-                if (count($parts) === 2 && trim($parts[0]) === 'RESEND_API_KEY') {
+                if (count($parts) === 2 && trim($parts[0]) === 'BREVO_API_KEY') {
                     $apiKey = trim($parts[1]);
                     break;
                 }
@@ -58,23 +58,24 @@ if (!$apiKey) {
 }
 
 if (!$apiKey) {
-    error_log('send.php: RESEND_API_KEY not found in env or .env file');
+    error_log('send.php: BREVO_API_KEY not found in env or .env file');
     jsonResponse(500, ['error' => 'Erreur de configuration serveur']);
 }
 
-$ch = curl_init('https://api.resend.com/emails');
+$ch = curl_init('https://api.brevo.com/v3/smtp/email');
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST => true,
     CURLOPT_HTTPHEADER => [
-        'Authorization: Bearer ' . $apiKey,
+        'api-key: ' . $apiKey,
+        'accept: application/json',
         'Content-Type: application/json',
     ],
     CURLOPT_POSTFIELDS => json_encode([
-        'from' => 'Dabilio <hello@dabil.io>',
-        'to' => ['marketing@dabil.io'],
+        'sender' => ['name' => 'Dabilio', 'email' => 'marketing@dabil.io'],
+        'to' => [['email' => 'marketing@dabil.io']],
         'subject' => $subject,
-        'text' => $text,
+        'textContent' => $text,
     ]),
     CURLOPT_TIMEOUT => 15,
 ]);
@@ -90,8 +91,8 @@ if ($curlError) {
 }
 
 if ($httpCode >= 400) {
-    error_log('send.php: Resend API error (HTTP ' . $httpCode . ') - ' . $response);
-    jsonResponse(500, ['error' => 'Resend: HTTP ' . $httpCode]);
+    error_log('send.php: Brevo API error (HTTP ' . $httpCode . ') - ' . $response);
+    jsonResponse(500, ['error' => 'Brevo: HTTP ' . $httpCode]);
 }
 
 jsonResponse(200, ['success' => true]);

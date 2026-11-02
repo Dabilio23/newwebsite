@@ -7,7 +7,7 @@ Site vitrine de [Dabilio](https://dabil.io), plateforme de gestion scolaire pour
 ```
 .
 ├── index.html              # Page d'accueil
-├── send.php                # Backend d'envoi d'emails (API Resend)
+├── send.php                # Backend d'envoi d'emails (API Brevo)
 ├── .htaccess               # Sécurité serveur Apache
 ├── modules/
 │   ├── admission.html      # Module Admission
@@ -27,12 +27,12 @@ Site vitrine de [Dabilio](https://dabil.io), plateforme de gestion scolaire pour
   
 ## Configuration
 
-Les formulaires envoient les données à `send.php` qui relaie vers `marketing@dabil.io` via l'API Resend.
+Les formulaires envoient les données à `send.php` qui relaie vers `marketing@dabil.io` via l'API Brevo.
 
 ### Variable d'environnement requise
 
 ```
-RESEND_API_KEY=your_api_key
+BREVO_API_KEY=your_api_key
 ```
 
 La clé peut être définie via une variable d'environnement serveur ou un fichier `.env` à la racine (non versionné).
@@ -53,7 +53,7 @@ php -S localhost:8080
 
 Puis ouvrir [http://localhost:8080](http://localhost:8080).
 
-> Les formulaires nécessitent un serveur PHP et une clé `RESEND_API_KEY` valide pour fonctionner.
+> Les formulaires nécessitent un serveur PHP et une clé `BREVO_API_KEY` valide pour fonctionner.
 
 ## Déploiement
 
