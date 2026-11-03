@@ -299,7 +299,7 @@ Lot 270 Bis Ambodiakondro, Ambohijanaka, Antananarivo 102
 
 ### Téléphone
 
-+261 34 24 975 18
++261 34 82 298 57
 
 ### Email
 
