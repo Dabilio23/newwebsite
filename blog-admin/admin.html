@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Dabilio - Édition</title>
+<style>
+  :root { --ink:#18181b; --mut:#71717a; --line:#e4e4e7; --bg:#fafafa; --brand:#170b30; --ok:#10b981; --err:#dc2626; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, 'Inter', system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  header { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+  header h1 { font-size:16px; margin:0; font-weight:600; }
+  header .tag { font-size:12px; color:var(--mut); margin-left:10px; }
+  .layout { display:grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 54px); }
+  aside { border-right:1px solid var(--line); background:#fff; padding:16px; overflow:auto; }
+  aside button.new { width:100%; margin-bottom:14px; }
+  .item { padding:10px 12px; border-radius:10px; cursor:pointer; margin-bottom:4px; }
+  .item:hover { background:#f4f4f5; } .item.active { background:#ecfdf5; }
+  .item b { display:block; font-size:14px; font-weight:500; }
+  .item small { color:var(--mut); font-size:12px; }
+  .badge { font-size:11px; padding:1px 8px; border-radius:99px; margin-left:6px; }
+  .badge.published { background:#d1fae5; color:#065f46; } .badge.draft { background:#f4f4f5; color:#52525b; }
+  main { padding:20px; max-width:1500px; width:100%; }
+  .row { display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:14px; }
+  .row3 { display:grid; grid-template-columns: 1fr 160px 150px; gap:14px; margin-bottom:14px; }
+  label { display:block; font-size:12px; color:var(--mut); margin-bottom:4px; }
+  input, select, textarea { width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:10px; font:inherit; background:#fff; }
+  textarea { font-family: ui-monospace, Menlo, monospace; font-size:14px; line-height:1.6; resize:vertical; }
+  .editor { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  .pane { background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px; }
+  #preview { padding:6px 10px; height:560px; overflow:auto; }
+  #preview:empty::before { content:"L'aperçu s'affiche ici dès que vous écrivez."; color:var(--mut); font-style:italic; }
+  .pane.sticky { position:sticky; top:66px; align-self:start; }
+  #pstate { float:right; }
+  button { padding:9px 16px; border-radius:99px; border:1px solid var(--line); background:#fff; font:inherit; cursor:pointer; }
+  button.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+  button.danger { color:var(--err); }
+  button:disabled { opacity:.5; cursor:default; }
+  .bar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px; }
+  .toolbar { display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+  .toolbar button { padding:4px 11px; font-size:13px; border-radius:8px; }
+  #msg { font-size:13px; margin-left:auto; max-width:60%; white-space:pre-wrap; }
+  #msg.ok { color:#047857; } #msg.err { color:var(--err); }
+  .hint { font-size:12px; color:var(--mut); margin-top:4px; }
+  .cover { display:flex; gap:10px; align-items:center; } .cover img { height:38px; border-radius:6px; border:1px solid var(--line); }
+  dialog { border:0; border-radius:16px; padding:22px; max-width:520px; width:92%; box-shadow:0 20px 60px rgba(0,0,0,.25); }
+  dialog::backdrop { background:rgba(0,0,0,.35); } pre.log { background:#f4f4f5; padding:10px; border-radius:10px; font-size:12px; max-height:200px; overflow:auto; white-space:pre-wrap; }
+  .article-body { font-size:16px; line-height:1.75; color:#3f3f46; } .article-body > * + * { margin-top:1rem; }
+  .article-body h2 { font-size:1.5rem; color:#18181b; margin-top:2rem; } .article-body h3 { font-size:1.2rem; color:#18181b; }
+  .article-body a { color:#4059ad; } .article-body ul { list-style:disc; padding-left:1.4rem; } .article-body ol { list-style:decimal; padding-left:1.4rem; }
+  .article-body img { max-width:100%; border-radius:12px; } .article-body blockquote { border-left:3px solid var(--ok); padding-left:1rem; color:#52525b; font-style:italic; margin-left:0; }
+  .article-body code { background:#f4f4f5; padding:1px 5px; border-radius:5px; } .article-body pre { background:#1b1b1e; color:#e4e4e7; padding:12px; border-radius:10px; overflow:auto; }
+  @media (max-width: 760px) { .layout { grid-template-columns:1fr; } .editor, .row, .row3 { grid-template-columns:1fr; } aside { border-right:0; border-bottom:1px solid var(--line); } }
+</style>
+</head>
+<body>
+<header>
+  <div><h1 style="display:inline">Blog Dabilio</h1><span class="tag">Édition locale - rien n'est en ligne tant que vous n'avez pas publié</span></div>
+  <div><button id="btnPublish" class="primary">Publier sur GitHub</button></div>
+</header>
+<div class="layout">
+  <aside>
+    <button class="new primary" id="btnNew">+ Nouvel article</button>
+    <div id="list"></div>
+  </aside>
+  <main>
+    <div id="empty" style="color:var(--mut);padding:40px 0">Choisissez un article ou créez-en un.</div>
+    <form id="form" hidden onsubmit="return false">
+      <div class="row3">
+        <div><label>Titre</label><input id="title" placeholder="Titre de l'article"></div>
+        <div><label>Date</label><input id="date" type="date"></div>
+        <div><label>Statut</label><select id="status"><option value="draft">Brouillon</option><option value="published">Publié</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Adresse de la page (slug)</label><input id="slug" placeholder="mon-article"><div class="hint" id="urlhint"></div></div>
+        <div><label>Tags (séparés par des virgules)</label><input id="tags" placeholder="vie scolaire, pilotage"></div>
+      </div>
+      <div class="row">
+        <div><label>Description (référencement, 150 caractères conseillés) <span id="dcount"></span></label><textarea id="description" rows="2"></textarea></div>
+        <div><label>Image de couverture</label>
+          <div class="cover"><input id="image" placeholder="public/blog/mon-image.png" readonly><button type="button" id="btnCover">Choisir...</button><img id="coverPrev" hidden></div>
+          <div class="hint">Format conseillé : 1200 x 630 px, png, jpg ou webp.</div>
+          <div class="row" style="margin:10px 0 0"><div><label>Source de l'image (texte affiché)</label><input id="image_credit" placeholder="Ex : Photo Unsplash / Nom de l'auteur"></div>
+          <div><label>Lien de la source</label><input id="image_credit_url" placeholder="https://..."></div></div></div>
+      </div>
+      <div class="editor">
+        <div class="pane">
+          <div class="toolbar">
+            <button type="button" data-w="**|**"><b>G</b></button><button type="button" data-w="*|*"><i>I</i></button>
+            <button type="button" data-p="## ">Titre</button><button type="button" data-p="### ">Sous-titre</button>
+            <button type="button" data-p="- ">Liste</button><button type="button" data-p="> ">Citation</button>
+            <button type="button" id="btnLink">Lien</button><button type="button" id="btnImg">Image</button>
+          </div>
+          <textarea id="body" rows="24" placeholder="Écrivez en Markdown : ## Titre, **gras**, - liste..."></textarea>
+        </div>
+        <div class="pane sticky"><div class="hint" style="margin-bottom:6px">Aperçu en direct <span id="pstate"></span></div><div id="preview" class="article-body"></div></div>
+      </div>
+      <div class="bar">
+        <button class="primary" id="btnSave" type="button">Enregistrer</button>
+        <a id="btnOpen" href="#" target="_blank" hidden><button type="button">Voir la page générée</button></a>
+        <button class="danger" id="btnDelete" type="button" hidden>Supprimer</button>
+        <div id="msg"></div>
+      </div>
+    </form>
+  </main>
+</div>
+<input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+<dialog id="dlg"><h3 style="margin-top:0">Publier sur GitHub</h3>
+  <p style="font-size:14px;color:#52525b">Ces fichiers seront envoyés sur GitHub (branche main). La mise en ligne du site se fait ensuite côté serveur.</p>
+  <pre class="log" id="changes"></pre>
+  <label>Message du commit</label><input id="commitMsg" value="Blog : mise à jour des articles">
+  <pre class="log" id="pubLog" hidden></pre>
+  <div class="bar"><button id="pubCancel">Fermer</button><button class="primary" id="pubGo">Publier</button></div>
+</dialog>
+<script>
+const $ = s => document.querySelector(s);
+let current = null, imgTarget = 'cover', dirty = false, timer;
+async function api(path, data) {
+  const opt = data === undefined ? {} : { method:'POST', headers:{'Content-Type':'application/json','X-Blog-Admin':'1'}, body:JSON.stringify(data) };
+  const r = await fetch(path, opt); const j = await r.json();
+  if (!r.ok) throw new Error(j.error || 'Erreur'); return j;
+}
+const slugify = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+function msg(t, ok=true) { const m=$('#msg'); m.textContent=t; m.className=ok?'ok':'err'; }
+async function loadList() {
+  const items = await api('/api/articles');
+  $('#list').innerHTML = items.length ? '' : '<div class="hint">Aucun article pour le moment.</div>';
+  for (const a of items) {
+    const d = document.createElement('div'); d.className='item'+(current&&current.old===a.slug?' active':'');
+    d.innerHTML = '<b></b><small></small>'; d.querySelector('b').textContent = a.title;
+    d.querySelector('small').textContent = a.date + ' ';
+    const b = document.createElement('span'); b.className='badge '+a.status; b.textContent = a.status==='published'?'Publié':'Brouillon'; d.querySelector('small').append(b);
+    d.onclick = () => openArticle(a.slug); $('#list').append(d);
+  }
+}
+function fill(a, old) {
+  current = { old };
+  for (const k of ['title','date','status','slug','tags','description','image','image_credit','image_credit_url','body']) $('#'+k).value = a[k] || '';
+  $('#empty').hidden = true; $('#form').hidden = false; $('#btnDelete').hidden = !old;
+  const o = $('#btnOpen'); o.hidden = !old || a.status !== 'published'; if (old) o.href = '/blog/'+old+'.html';
+  updateHints(); renderPreview(); dirty = false; msg('');
+}
+async function openArticle(slug) { fill(await api('/api/article?slug='+slug), slug); loadList(); }
+function updateHints() {
+  $('#urlhint').textContent = 'https://dabil.io/blog/' + ($('#slug').value || '...') + '.html';
+  $('#dcount').textContent = '(' + $('#description').value.length + ')';
+  const img = $('#image').value, p = $('#coverPrev'); p.hidden = !img; if (img) p.src = '/' + img;
+}
+let previewSeq = 0;
+function renderPreview() { clearTimeout(timer); $('#pstate').textContent = '...'; timer = setTimeout(async () => {
+  const seq = ++previewSeq;
+  try { const r = await api('/api/preview', {body:$('#body').value}); if (seq !== previewSeq) return;
+    $('#preview').innerHTML = r.html; $('#pstate').textContent = 'à jour';
+  } catch(e) { if (seq !== previewSeq) return; $('#pstate').textContent = 'erreur : ' + e.message; } }, 150); }
+$('#btnNew').onclick = () => fill({ date:new Date().toISOString().slice(0,10), status:'draft' }, '');
+$('#title').oninput = () => { if (!current.old && !$('#slug').dataset.manual) $('#slug').value = slugify($('#title').value); updateHints(); dirty=true; };
+$('#slug').oninput = () => { $('#slug').dataset.manual = '1'; updateHints(); dirty=true; };
+for (const id of ['description','image','image_credit','image_credit_url','tags','date','status']) $('#'+id).oninput = () => { updateHints(); dirty=true; };
+for (const ev of ['input','keyup','paste','change']) $('#body').addEventListener(ev, () => { renderPreview(); dirty=true; });
+function wrap(before, after) { const t=$('#body'), s=t.selectionStart, e=t.selectionEnd, sel=t.value.slice(s,e);
+  t.setRangeText(before+sel+after, s, e, 'end'); if(!sel){ t.selectionStart=t.selectionEnd=s+before.length; } t.focus(); renderPreview(); dirty=true; }
+document.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { const [x,y]=b.dataset.w.split('|'); wrap(x,y); });
+document.querySelectorAll('[data-p]').forEach(b => b.onclick = () => { const t=$('#body'); const s=t.value.lastIndexOf('\n', t.selectionStart-1)+1; t.setRangeText(b.dataset.p, s, s, 'end'); t.focus(); renderPreview(); dirty=true; });
+$('#btnLink').onclick = () => { const u = prompt('Adresse du lien (https://...)'); if (u) wrap('[', '](' + u + ')'); };
+function pick(target) { imgTarget = target; $('#file').value=''; $('#file').click(); }
+$('#btnCover').onclick = () => pick('cover'); $('#btnImg').onclick = () => pick('body');
+$('#file').onchange = async () => { const f = $('#file').files[0]; if (!f) return;
+  try { const data = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(',')[1]); r.onerror = rej; r.readAsDataURL(f); });
+    const { path } = await api('/api/upload', { name:f.name, data });
+    if (imgTarget === 'cover') { $('#image').value = path; updateHints(); } else { const alt = prompt('Description de l\'image (texte alternatif)') || ''; wrap('![' + alt + '](../' + path + ')', ''); }
+    dirty = true; msg('Image ajoutée : ' + path);
+  } catch(e) { msg(e.message, false); } };
+$('#btnSave').onclick = async () => { try {
+  const r = await api('/api/save', { old_slug:current.old, slug:$('#slug').value.trim(), title:$('#title').value, description:$('#description').value, date:$('#date').value, image:$('#image').value, image_credit:$('#image_credit').value, image_credit_url:$('#image_credit_url').value, tags:$('#tags').value, status:$('#status').value, body:$('#body').value });
+  current.old = r.slug; $('#btnDelete').hidden = false; const o=$('#btnOpen'); o.hidden = $('#status').value !== 'published'; o.href = '/blog/'+r.slug+'.html'; dirty=false;
+  msg('Enregistré. Pages générées (' + r.build.published + ' publiée(s)). Pas encore sur GitHub.'); loadList();
+} catch(e) { msg(e.message, false); } };
+$('#btnDelete').onclick = async () => { if (!confirm('Supprimer définitivement cet article ?')) return;
+  try { await api('/api/delete', { slug:current.old }); current=null; $('#form').hidden=true; $('#empty').hidden=false; loadList(); } catch(e) { msg(e.message,false); } };
+$('#btnPublish').onclick = async () => { $('#pubLog').hidden = true; $('#pubGo').disabled = false;
+  const g = await api('/api/git-status'); let t = g.changes.length ? g.changes.join('\n') : 'Aucun fichier modifié.'; if (g.unpushed) t += '\n\n' + g.unpushed + ' commit(s) déjà fait(s) en local, pas encore envoyé(s) sur GitHub.'; $('#changes').textContent = t; $('#dlg').showModal(); };
+$('#pubCancel').onclick = () => $('#dlg').close();
+$('#pubGo').onclick = async () => { $('#pubGo').disabled = true; const l = $('#pubLog'); l.hidden = false; l.textContent = 'Envoi en cours...';
+  try { l.textContent = (await api('/api/publish', { message:$('#commitMsg').value })).log; } catch(e) { l.textContent = e.message; $('#pubGo').disabled = false; } };
+window.onbeforeunload = () => dirty ? 'Modifications non enregistrées' : undefined;
+loadList();
+</script>
+</body>
+</html>

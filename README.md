@@ -64,3 +64,20 @@ git push origin main
 ```
 
 Le dépôt distant est : `https://github.com/Dabilio23/newwebsite`
+
+## Blog
+
+Les articles sont rédigés en Markdown dans un outil local, puis publiés sur GitHub. La mise en ligne se fait ensuite côté serveur.
+
+```
+python3 blog-admin/admin.py
+```
+
+Ouvre http://localhost:8800 (aucune dépendance à installer, Python 3 suffit).
+
+- `blog-admin/` : outil d'édition (local uniquement, bloqué par `.htaccess` sur le serveur).
+- `blog-src/articles/` : sources des articles (`.md`).
+- `blog/` : pages HTML générées (à déployer). Ne pas modifier à la main.
+- `public/blog/` : images des articles.
+
+Enregistrer un article régénère `blog/`, le `sitemap.xml` et `llms.txt` (blocs `<!-- blog:start -->` / `<!-- blog:end -->`, à ne pas toucher). Seuls les articles au statut « Publié » sont générés. Le bouton « Publier sur GitHub » commite et pousse ces fichiers sur `main`.
