@@ -1,6 +1,6 @@
 # Dabilio
 
-> Dabilio est une plateforme de gestion scolaire tout-en-un pour les établissements d'enseignement (écoles, universités, centres de formation). Elle centralise la gestion administrative, la vie scolaire, la communication avec les familles, les finances et l'orientation dans un écosystème éducatif intelligent.
+> Dabilio est un ERP pensé pour l'éducation à Madagascar. Il regroupe l'admission, la vie scolaire, la pédagogie, les finances et la communication avec les familles pour les écoles, les universités et les centres de formation. Chaque outil répond à un enjeu concret du terrain et renforce l'expertise des équipes, sans la remplacer.
 
 ## Pages principales
 
@@ -11,6 +11,10 @@
 - [Solution Écoles](https://dabil.io/solutions/ecoles.html): Solution dédiée aux écoles primaires, collèges et lycées.
 - [Solution Universités](https://dabil.io/solutions/universite.html): Solution dédiée aux universités et grandes écoles.
 - [Solution Centres de formation](https://dabil.io/solutions/centre.html): Solution dédiée aux centres de formation professionnelle.
+
+## Questions fréquentes
+
+- [FAQ Dabilio](https://dabil.io/#faq): Gratuité du module Admission, modules, tarification, délai de déploiement, paiements, annuaire et contact.
 
 ## Produit
 
