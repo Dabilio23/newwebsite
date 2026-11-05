@@ -8,6 +8,7 @@ import json
 import re
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "blog-src" / "articles"
@@ -267,6 +268,19 @@ def _tags(a):
     return [t.strip() for t in a["tags"].split(",") if t.strip()]
 
 
+def _share_block(url, wrapper):
+    fb = "https://www.facebook.com/sharer/sharer.php?u=" + quote(url, safe="")
+    li = "https://www.linkedin.com/sharing/share-offsite/?url=" + quote(url, safe="")
+    btn = ('<a href="%s" target="_blank" rel="noopener noreferrer" aria-label="Partager sur %s" title="Partager sur %s"\n'
+           '                        class="w-10 h-10 rounded-full border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 hover:bg-[%s] hover:border-[%s] hover:text-white transition-all">\n'
+           '                        <iconify-icon icon="mdi:%s" width="20" height="20"></iconify-icon>\n'
+           '                    </a>')
+    return ('<div class="%s">\n                    <span class="text-sm text-zinc-500">Partager cet article</span>\n'
+            '                    %s\n                    %s\n                </div>') % (
+        wrapper, btn % (fb, "Facebook", "Facebook", "#1877F2", "#1877F2", "facebook"),
+        btn % (li, "LinkedIn", "LinkedIn", "#0A66C2", "#0A66C2", "linkedin"))
+
+
 def render_article(a):
     url = "%s/blog/%s.html" % (SITE, a["slug"])
     cover = ""
@@ -291,11 +305,13 @@ def render_article(a):
                 </a>
                 <div class="flex flex-wrap gap-2 mb-5">{tags}</div>
                 <h1 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-[1.1] mb-6">{title}</h1>
-                <p class="text-sm text-zinc-500 mb-10">{d} - {mins} min de lecture</p>
+                <p class="text-sm text-zinc-500 mb-4">{d} - {mins} min de lecture</p>
+                {share_top}
                 {cover}{credit}
                 <div class="article-body">
 {content}
                 </div>
+                {share_bottom}
                 <div class="mt-16 rounded-3xl bg-[#170b30] text-white p-8 md:p-10 text-center">
                     <h2 class="text-2xl font-medium tracking-tight mb-3">Parlons des enjeux de votre établissement</h2>
                     <p class="text-white/70 mb-6">Découvrez comment Dabilio répond aux enjeux du terrain.</p>
@@ -307,6 +323,8 @@ def render_article(a):
             </div>
         </article>""".format(tags=tags, title=html.escape(a["title"]), d=french_date(a["date"]),
                              mins=reading_minutes(a["body"]), cover=cover, credit=credit,
+                             share_top=_share_block(url, "flex flex-wrap items-center gap-3 mb-10"),
+                             share_bottom=_share_block(url, "mt-12 pt-8 border-t border-zinc-200 flex flex-wrap items-center gap-3"),
                              content=markdown_to_html(a["body"]))
     ld = json.dumps({
         "@context": "https://schema.org", "@type": "Article",
